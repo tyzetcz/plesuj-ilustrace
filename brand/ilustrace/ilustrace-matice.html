@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="cs" data-theme="dark">
+<head>
+<meta name="robots" content="noindex">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Matice ilustrací G</title>
+<!-- Krok 3b, mimo produkční build (brand/ se nenasazuje): barevnost podle tématu × množství prvků, 3×3 buňky pro každý pilot.
+     Skutečné CSS webu a komponenty (karta plesu, karta detailu, našeptávač, výpis). Čísla z kontrola.py (rendery/kontrola-matice.js).
+     Otevřít přímo ze souboru, nebo: python3 -m http.server 8080 v kořeni repozitáře → http://localhost:8080/brand/ilustrace/ilustrace-matice.html -->
+<link rel="stylesheet" href="../../style.css?v=16">
+<link rel="stylesheet" href="../../seo.css?v=18">
+<script src="rendery/kontrola-matice.js"></script>
+<style>
+/* budoucí stav z kroku 5: filtr grayscale/brightness na ilustracích zrušen, čitelný popisek na světlé ilustraci */
+.pc .ill img,.ls img.ill,.pp.ill img,.pcard.ill .pfr img{filter:none}
+[data-theme=light] .pcard.ill .uv{background:#2a2030cc;color:#efe8de}
+body{padding:24px clamp(16px,3vw,40px) 60px}
+h1{font-size:30px;margin:0 0 6px}.intro{color:var(--mut);margin:0 0 18px;max-width:92ch}
+h2.pv{font-size:24px;margin:40px 0 6px}.pv+p{color:var(--mut);margin:0 0 14px;max-width:92ch}
+.mnav{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 8px}.mnav a{padding:6px 12px;border-radius:20px;border:1px solid var(--line);color:var(--ink);text-decoration:none;font-size:14px}.mnav a:hover{border-color:var(--gold)}
+.tg{display:flex;align-items:center;gap:8px;padding:6px 12px;border-radius:20px;border:1px dashed var(--line);font-size:14px;color:var(--mut);cursor:pointer}.tg input{accent-color:#b07a2c}
+/* návrh pro krok 5 (brief, zjištění kroku 2): tmavý přechod karty u ilustrací začíná níž, aby nezakrýval spodek motivu */
+body.prechod .pc .ph.ill::after{background:linear-gradient(transparent 50%,#0b0812cc 72%,#0b0812 94%)}
+.legend{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:14px;margin:0 0 10px}
+.legend>div{border:1px solid var(--line);border-radius:16px;padding:12px 14px;background:var(--bg2)}
+.legend h3{margin:0 0 6px;font-size:15px}.legend p{margin:0;color:var(--mut);font-size:14px;line-height:1.5}
+.sw{display:flex;gap:4px;margin:8px 0 4px;flex-wrap:wrap}.sw i{width:22px;height:22px;border-radius:6px;border:1px solid #0003}.sw small{color:var(--mut);font-size:12px;margin-right:8px;align-self:center}
+.th{background:var(--bg);color:var(--ink);padding:18px 20px 10px;border-radius:20px;border:1px solid var(--line);margin:0 0 18px}
+.th>h3{margin:0 0 6px;font-size:14px;color:var(--mut);font-weight:600;letter-spacing:.05em;text-transform:uppercase}
+.th>p{color:var(--mut);margin:0 0 14px;max-width:96ch;font-size:15px}
+.mx{display:grid;grid-template-columns:repeat(3,minmax(0,290px));gap:14px 18px;align-items:start}
+.mx .ch{font-size:13px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--ink);padding:0 2px}
+.mx .ch small{display:block;font-weight:400;text-transform:none;letter-spacing:0;color:var(--mut);font-size:12px;margin-top:2px}
+.rh{grid-column:1/-1;font-size:13px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;padding:12px 0 2px;border-top:1px solid var(--line);margin-top:6px}
+.rh small{font-weight:400;text-transform:none;letter-spacing:0;color:var(--mut);font-size:13px;margin-left:8px}
+.cell{display:grid;gap:10px;min-width:0}
+.cell .id{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.08em;padding:2px 9px;border-radius:12px;background:#b07a2c;color:#fff8ec;justify-self:start}
+.pc.demo{width:100%;opacity:1;transform:none}
+.pcard.demo{width:100%}
+.mini{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.ac.demo{position:static;box-shadow:none;max-height:none;padding:5px;border-radius:14px;width:max-content;max-width:100%}
+.ac.demo [role=option]{padding:5px 8px}
+.ls.demo{grid-template-columns:1fr;margin:0;flex:1;min-width:150px}
+.ls.demo li{padding:6px 8px}
+.num{font-variant-numeric:tabular-nums}
+.k{font-size:12.5px;line-height:1.55;color:var(--mut);border-top:1px solid var(--line);padding-top:7px}
+.k b{color:var(--ink);font-weight:600}.k .ok{color:#3f9a5c;font-weight:700}.k .ko{color:#d0543c;font-weight:700}.k .over{color:#c9852a;font-weight:700}
+.ov{display:grid;grid-template-columns:repeat(3,max-content);gap:10px 26px;align-items:center;margin:0 0 6px}
+.ov .trio{display:flex;gap:6px;align-items:flex-end}
+.ov img.t{width:60px;height:80px;border-radius:8px;display:block}.ov img.s{width:34px;height:34px;border-radius:10px;display:block}
+.ov .ids{font-size:11px;color:var(--mut);margin-top:4px}
+@media(max-width:1000px){.mx{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:700px){.mx{grid-template-columns:minmax(0,320px)}.mx .ch{display:none}.ov{grid-template-columns:max-content}.ov .ch{display:none}}
+</style>
+</head>
+<body>
+<h1 class="serif">Ilustrace G – barevnost podle tématu a množství prvků</h1>
+<p class="intro">Krok 3b. Pro každý pilot matice 3×3: <b>sloupce = barevnost</b> (elegantní → vyvážená → tématická), <b>řádky = množství prvků</b> (minimalistická → střední → přemrštěná). Zlatá je společná všem buňkám. Každá buňka má kód, například <b>V·S</b> (vyvážená, střední), podle kterého ji stačí vybrat. Pod buňkou je našeptávač 34×34 a výpis 60×80 ve skutečné velikosti a výsledky <code>kontrola.py</code>. Výchozí verze (G tmavá, G2 světlá) se nemění. Nejblíž jim je buňka E·S, ta má navíc jen nádech tématu.</p>
+<nav class="mnav" id="nav"></nav>
+<div id="out"></div>
+<script>
+// pilot: klíč, název tématu, text karty (název, datum · místo, den, měsíc), prvky přemrštěné úrovně
+const M = [
+  ["myslivecky", "Myslivecký ples MS Doubrava", "sobota 16. ledna · Sokolovna, Hlinsko", 16, "led",
+   "Lesní a mechová zelená", "Dubové listy motivu přecházejí z olivové do mechové.", "kapradí za motivem, padající dubové listí, dubové větvičky se žaludy v horních rozích, kapradí a snítky dubu se žaludy v dolních rozích",
+   [["#05120a", "#0f2213", "#1c351b", "#3c5a39"], ["#bec19b", "#9ea780", "#768a5f", "#a8b28e"]]],
+  ["hasicsky", "Hasičský ples SDH Kaznějov", "sobota 7. listopadu · Kino Kaznějov", 7, "lis",
+   "Karmínová a rumělková", "V tmavém režimu karmínová, ve světlém rumělková až korálová (světlá červená by jinak byla růžová). Přilba je ve světlém režimu o stupeň tmavší mosaz, aby se odrážela od červené záře.", "žebřík opřený vpravo nahoře, jiskry kolem přilby (v tmavém režimu svítí), dvě svinuté hadice s mosaznými spojkami v dolních rozích",
+   [["#1e0a09", "#381012", "#62161c", "#912626"], ["#f5a993", "#e97362", "#cf544d", "#e88e7c"]]],
+  ["maturitni", "Maturitní ples SPŠ stavební ČB", "úterý 27. října · DK Metropol, České Budějovice", 27, "říj",
+   "Královská modrá (návrh)", "Šerpa, stuhy a vnější sklady rozety přecházejí ze švestkové do královské modré. Vínová by ve výpisu splývala s hasičskou červenou a fialová je už barva webu, modrá se zlatou je klasika akademických barev.", "kudrlinky stuh vpravo nahoře, konfety, papírové růže s listy a stuhy v dolních rozích",
+   [["#0f0e1c", "#151b3a", "#1c2d5c", "#274590"], ["#a9c0db", "#8ea5c2", "#6282b4", "#91aad0"]]],
+];
+const B = [["e", "Elegantní", "paleta webu, téma jen v nádechu"], ["v", "Vyvážená", "vnitřní rámy a stupně v barvě tématu"], ["t", "Tématická", "barva tématu v celé scéně"]];
+const P = [["m", "Minimalistická", "podklad, dva rámy, motiv"], ["s", "Střední", "dnešní úroveň"], ["p", "Přemrštěná", "navíc tematické prvky"]];
+const HRT = '<svg viewBox="0 0 24 24"><path d="M12 21s-7.5-4.6-9.5-9.2C1 8.4 3.3 5 6.7 5c2 0 3.4 1.1 4.3 2.4h2C13.9 6.1 15.3 5 17.3 5 20.7 5 23 8.4 21.5 11.8 19.5 16.4 12 21 12 21z"/></svg>';
+const K = window.KONTROLA || {};
+const f = (cell, k, v, light) => `rendery/webp/m${cell}-${k}${v ? "-" + v : ""}${light ? "-svetly" : ""}.webp`;
+const short = t => t.split(" ").slice(0, 2).join(" ");
+const n = (x, d = 1) => x == null ? "–" : x.toFixed(d).replace(".", ",");
+const card = (img, [k, t, m, day, mon]) => `<a class="pc demo" href="#"><div class="ph ill"><img src="${img}" alt="" width="300" height="400" loading="lazy" style="object-fit:cover"></div><div class="dt"><b>${day}</b> <span>${mon}</span></div><button class="hrt" aria-label="Uložit">${HRT}</button><div class="cap"><h3>${t}</h3><div class="m">${m.split(" · ")[0]} · 20:00</div><div class="m">${m.split(" · ")[1]}</div><span class="uv">Ilustrační obrázek</span></div></a>`;
+const pcard = img => `<figure class="pcard ill demo"><div class="pfr"><img src="${img}" alt="Ilustrační obrázek" width="300" height="400" loading="lazy"><figcaption class="uv">Ilustrační obrázek</figcaption></div></figure>`;
+const ac = (img, t) => `<div class="ac demo"><div role="option"><span class="ic"><img src="${img}" alt=""></span><span>${t}</span></div></div>`;
+const ls = (img, t, m) => `<ul class="ls demo"><li><img class="ill" src="${img}" alt="" width="60" height="80"><div><a href="#">${short(t)}</a> <small>${m.split(" · ")[0]}</small></div></li></ul>`;
+// výsledky kontrola.py pod buňkou; rozpočet WebP: plná 80 kB, -sm 18 kB, -xs 6 kB
+const kontrola = (cell, k, light) => {
+  const r = K[`m${cell}-${k}${light ? "-svetly" : ""}`];
+  if (!r) return `<div class="k">Výsledky kontroly chybí (spusť kontrola.py --js).</div>`;
+  const kb = r.kB.map((v, i) => v > [80, 18, 6][i] ? `<span class="over" title="nad rozpočtem ${[80, 18, 6][i]} kB">${n(v, 0)}</span>` : n(v, 0)).join(" / ");
+  return `<div class="k num"><b>60×80</b> L* ${n(r.L)} · ΔL* ${n(r.dL)} · hnědá ${n(r.hneda, 0)} % · V ${n(r.V, 2)}<br><b>34×34</b> ΔL* ${n(r.dLxs)} · <b>WebP</b> ${kb} kB<br>${r.ok ? '<span class="ok">✓ v laťce</span>' : '<span class="ko">✗ mimo laťku</span>'}</div>`;
+};
+const id = (b, p) => `${b.toUpperCase()}·${p.toUpperCase()}`;
+const matrix = (mm, light) => {
+  const [k, t, m] = mm;
+  let h = `<div class="mx">${B.map(([, bn, bs]) => `<div class="ch">${bn}<small>${bs}</small></div>`).join("")}`;
+  for (const [p, pn, ps] of P) {
+    h += `<div class="rh">${pn}<small>${ps}</small></div>`;
+    for (const [b, bn] of B) {
+      const c = b + p;
+      h += `<div class="cell" id="${k}-${light ? "svetly" : "tmavy"}-${c}"><span class="id" title="${bn.toLowerCase()}, ${pn.toLowerCase()}">${id(b, p)}</span>${light ? pcard(f(c, k, "", 1)) : card(f(c, k, "", 0), mm)}
+        <div class="mini">${ac(f(c, k, "xs", light), short(t))}${ls(f(c, k, "sm", light), t, m)}</div>${kontrola(c, k, light)}</div>`;
+    }
+  }
+  return h + `</div>`;
+};
+let h = "";
+// legenda: osy a barvy témat
+h += `<section id="legenda"><h2 class="pv serif">Osy matice a barvy témat</h2><p>Barevnost říká, jak daleko od středu se barva tématu rozlévá. Množství prvků říká, co kromě motivu je na scéně. Doprovodné prvky jsou vystřižené z papíru v barvě tématu (tón v tónu) a nikdy nepřekrývají motiv, aby zůstal nejvýraznější.</p>
+<div class="legend"><div><h3>Barevnost</h3><p><b>E elegantní:</b> paleta webu, téma jen v nádechu (záře za motivem v tmavém režimu, textil a listy motivu, doprovodné prvky).<br><b>V vyvážená:</b> vnitřní a prostřední rám a stupně v barvě tématu, podklad a čelní rám zůstávají v paletě webu.<br><b>T tématická:</b> barva tématu v celé scéně. Ve světlém režimu je navíc čelní rám tmavší (L* 52–55 místo 62), jako opona.</p></div>
+<div><h3>Množství prvků</h3><p><b>M minimalistická:</b> podklad, vnitřní a čelní rám a motiv. Bez paprsků, prstenců, prostředního rámu, stupňů, hvězdiček, perforace a vějířů.<br><b>S střední:</b> dnešní úroveň.<br><b>P přemrštěná:</b> navíc tematické prvky ve třech vrstvách: za motivem, drobné částice a kulisy v rozích před čelním rámem.</p></div></div>
+<div class="legend">${M.map(([k, t, , , , tn, ti, tp, sw]) => `<div><h3>${short(t)}: ${tn}</h3><div class="sw">${sw.map((s, i) => `<small>${i ? "světlá" : "tmavá"}</small>${s.map(c => `<i style="background:${c}" title="${c}"></i>`).join("")}`).join("")}</div><p>${ti}<br><b>Přemrštěná:</b> ${tp}.</p></div>`).join("")}</div></section>`;
+// přehled: všechny tři piloty v každé buňce ve výpisu 60×80 a našeptávači 34×34
+h += `<section id="prehled"><h2 class="pv serif">Přehled: buňka napříč piloty</h2><p>Výpis 60×80 a našeptávač 34×34 pro všechny tři piloty v každé buňce, ať jde porovnat stejnou vizuální váhu napříč kategoriemi.</p>`;
+for (const [th, l] of [["dark", "Tmavý režim"], ["light", "Světlý režim G2"]]) {
+  h += `<div class="th" data-theme="${th}" id="prehled-${th}"><h3>${l}</h3><div class="ov">${B.map(([, bn]) => `<div class="ch"><b>${bn}</b></div>`).join("")}`;
+  for (const [p, pn] of P) {
+    h += `<div class="rh">${pn}</div>`;
+    for (const [b] of B) h += `<div><div class="trio">${M.map(([k]) => `<img class="t" src="${f(b + p, k, "sm", th === "light")}" alt="">`).join("")}${M.map(([k]) => `<img class="s" src="${f(b + p, k, "xs", th === "light")}" alt="">`).join("")}</div><div class="ids">${id(b, p)}</div></div>`;
+  }
+  h += `</div></div>`;
+}
+h += `</section>`;
+// matice pro každý pilot, tmavá na kartě plesu, světlá na kartě detailu
+for (const mm of M) {
+  const [k, t] = mm;
+  h += `<section id="${k}"><h2 class="pv serif">${short(t)}</h2><p>${mm[5]}. ${mm[6]}</p>
+  <div class="th" data-theme="dark" id="${k}-tmavy"><h3>Tmavý režim – karta plesu ve výpisu (290×387)</h3><p>Spodek karty překrývá popisek a tmavý přechod webu, kulisy v dolních rozích jsou proto vidět hlavně v detailu.</p>${matrix(mm, false)}</div>
+  <div class="th" data-theme="light" id="${k}-svetly"><h3>Světlý režim G2 – karta detailu plesu</h3><p>Karta ve výpisu zůstává i ve světlém režimu tmavá (rozhodnutí z kroku 2), světlá ilustrace se ukazuje v detailu plesu, ve výpisech a v našeptávači. Matice světlého režimu je proto na kartě detailu.</p>${matrix(mm, true)}</div></section>`;
+}
+document.getElementById("out").innerHTML = h;
+const tg = `<label class="tg"><input type="checkbox" id="pre"> tmavá karta: přechod níž (návrh pro krok 5)</label>`;
+document.getElementById("nav").innerHTML = tg + [["legenda", "Osy a barvy"], ["prehled", "Přehled"], ...M.flatMap(([k, t]) => [[`${k}-tmavy`, `${short(t)} – tmavý`], [`${k}-svetly`, `${short(t)} – světlý`]])].map(([a, l]) => `<a href="#${a}">${l}</a>`).join("");
+document.getElementById("pre").addEventListener("change", e => document.body.classList.toggle("prechod", e.target.checked));
+</script>
+</body>
+</html>
