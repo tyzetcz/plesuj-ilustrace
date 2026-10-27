@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="cs" data-theme="dark">
+<head>
+<meta name="robots" content="noindex">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Makety ilustrací na webu</title>
+<!-- Krok 3b, mimo produkční build (brand/ se nenasazuje): screenshoty skutečného webu z kopie s ilustracemi čtyř buněk matice.
+     Snímky a seznam (rendery/screenshoty/maketa/maketa.js) vyrábí maketa.mjs. Otevřít přímo ze souboru. -->
+<link rel="stylesheet" href="../../style.css?v=16">
+<script src="rendery/screenshoty/maketa/maketa.js"></script>
+<style>
+body{padding:24px clamp(16px,3vw,40px) 80px}
+h1{font-size:30px;margin:0 0 6px}.intro{color:var(--mut);margin:0 0 18px;max-width:96ch}code{overflow-wrap:anywhere}
+.legend{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,330px),1fr));gap:14px;margin:0 0 14px}
+.legend>div{border:1px solid var(--line);border-radius:16px;padding:12px 14px;background:var(--bg2)}
+.legend h3{margin:0 0 6px;font-size:15px}.legend p,.legend li{margin:0;color:var(--mut);font-size:14px;line-height:1.5}.legend ul{margin:0;padding-left:18px}
+.legend b{color:var(--ink);font-weight:600}.legend p+p{margin-top:6px}
+.legend summary{cursor:pointer;color:var(--ink);font-size:14px;margin-top:6px}
+.legend pre{white-space:pre-wrap;word-break:break-all;font-size:11.5px;line-height:1.45;color:var(--mut);background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:8px 10px;margin:6px 0 0}
+/* filtry */
+.m-bar{position:sticky;top:0;z-index:50;display:flex;flex-wrap:wrap;gap:8px 22px;align-items:center;padding:10px 0 12px;background:linear-gradient(var(--bg) 82%,transparent)}
+.m-seg{display:flex;flex-wrap:wrap;gap:6px;align-items:center}.m-seg>span{font-size:12px;color:var(--mut);text-transform:uppercase;letter-spacing:.06em;margin-right:2px}
+.m-seg button{padding:5px 12px;border-radius:20px;border:1px solid var(--line);background:none;color:var(--ink);font:inherit;font-size:14px;cursor:pointer}
+.m-seg button:hover{border-color:var(--gold)}.m-seg button[aria-pressed=true]{background:#b07a2c;border-color:#b07a2c;color:#fff8ec}
+/* skupiny = stejná stránka, režim a zařízení; ve skupině řádky (pozice řady na mobilu) a v řádku buňky */
+.m-sec>h2{font-size:26px;margin:38px 0 2px}.m-sec>p{color:var(--mut);margin:0;max-width:96ch;font-size:15px}
+.m-grp{margin:22px 0 0;padding:14px 16px 4px;border:1px solid var(--line);border-radius:18px}
+.m-grp h3{font-size:14px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;margin:0 0 3px}
+.m-grp>p{color:var(--mut);margin:0 0 12px;font-size:14px;max-width:110ch}
+.m-rh{font-size:13px;color:var(--mut);margin:0 0 6px}.m-rh b{color:var(--ink);font-weight:600}
+.m-row{margin:0 0 14px}
+.m-grid{display:grid;grid-template-columns:repeat(var(--cols),minmax(0,1fr));gap:12px 14px;--cols:4}
+.m-grp.desktop .m-grid{--cols:var(--dcols,2)}
+.m-cell{margin:0;min-width:0}
+.m-cell figcaption{display:flex;gap:8px;align-items:baseline;margin:0 0 6px;font-size:13px;color:var(--mut);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.m-cell img{display:block;width:100%;height:auto;border-radius:10px;border:1px solid var(--line);cursor:zoom-in;background:#ffffff08}
+.m-id{font-size:12px;font-weight:700;letter-spacing:.08em;padding:2px 9px;border-radius:12px;background:#b07a2c;color:#fff8ec}
+[hidden]{display:none!important}
+/* lupa: ← → buňky na stejném místě, ↑ ↓ další řádek (pozice, režim, zařízení), Esc zavře */
+.m-zoom{position:fixed;inset:0;z-index:2000;background:#05030a;display:grid;grid-template-rows:auto minmax(0,1fr);gap:8px;padding:10px 12px 12px}
+.m-zt{display:flex;flex-wrap:wrap;gap:6px 12px;align-items:center;color:#efe8de;font-size:14px}.m-zt .m-id{font-size:13px}
+.m-zt small{color:#b9b0c8}.m-zt .sp{flex:1}
+.m-zt button{padding:6px 12px;border-radius:20px;border:1px solid #ffffff30;background:#ffffff10;color:#efe8de;font:inherit;font-size:14px;cursor:pointer}
+.m-zt button:hover{border-color:#ffd27a}
+.m-zi{min-height:0;display:grid;place-items:center}
+.m-zi img{max-width:100%;max-height:100%;object-fit:contain;border-radius:8px;box-shadow:0 20px 60px #000c}
+@media(max-width:800px){.m-grid{--cols:2}.m-grp.desktop .m-grid{--cols:1}}
+</style>
+</head>
+<body>
+<h1 class="serif">Makety: ilustrace přímo na webu</h1>
+<p class="intro">Čtyři buňky matice (V·S, V·P, T·S, T·P) na skutečném webu z kopie: web běžel lokálně, Playwright ho vyrenderoval
+ a požadavky na <code>img/typ/maturitni|hasicsky|myslivecky.webp</code> přesměroval na rendery buněk. Kód webu se nezměnil. Klikem na snímek
+ se otevře lupa, šipkami ← → se v ní přepíná mezi buňkami na stejném místě, ↑ ↓ na další řádek.</p>
+
+<div class="legend">
+ <div><h3>Buňky</h3><ul>
+  <li><b>V·S</b> vyvážená × střední, <b>V·P</b> vyvážená × přemrštěná</li>
+  <li><b>T·S</b> tématická × střední, <b>T·P</b> tématická × přemrštěná</li></ul>
+  <p>Myslivecký lesní a mechová zelená, hasičský karmínová (tmavý) a rumělková (světlý), maturitní královská modrá; zlatá je společná.
+  Na desktopu jsou buňky ve 2×2 jako výřez matice: sloupce střední | přemrštěná, řádky vyvážená | tématická.</p></div>
+ <div><h3>Jak makety vznikly</h3><p id="jak"></p>
+  <p>Mapa místa na detailu v kopii chybí (<code>img/mapa</code> je v .gitignore), místo ní je mapa ČR z webu.</p></div>
+ <div><h3>Vložené CSS (návrh kroku 5)</h3>
+  <p>Ilustrace bez filtru (šedý a ztmavující filtr byl pro staré fotky), u karet s ilustrací posunutý tmavý přechod
+  (začíná v 50 % místo 30 %), čitelný štítek „ilustrační foto“ na světlé ilustraci. Varianta „světlá karta“ navíc přebarví kartu.</p>
+  <details><summary>Krok 5 (všechny snímky)</summary><pre id="css1"></pre></details>
+  <details><summary>Světlá karta (jen varianta B)</summary><pre id="css2"></pre></details></div>
+ <div><h3>Co vybrat</h3><ul>
+  <li><b>Buňku</b>: barevnost V/T a prvky S/P (případně zvlášť pro tmavý a světlý režim).</li>
+  <li><b>Kartu ve světlém režimu</b>: dnešní tmavou kartu s tmavou ilustrací, nebo světlou kartu se světlou ilustrací G2.
+  Světlá karta platí pro všechny karty, takže u tmavých plakátů vznikne dole světlý závoj (je vidět v řadě „Příští víkend“).</li>
+  <li>T·S a obě P jsou v kvalitě WebP 88 nad rozpočtem (až 96 a 19 kB); kvalita 84 a 86 je vrátí pod 80 a 18 kB.</li></ul></div>
+</div>
+
+<div class="m-bar" role="toolbar" aria-label="Filtry">
+ <div class="m-seg" data-f="stranka"><span>Stránka</span><button data-v="">Vše</button><button data-v="uvod">Úvod</button><button data-v="detail-maturitni">Detail maturitní</button><button data-v="detail-hasicsky">Detail hasičský</button><button data-v="detail-myslivecky">Detail myslivecký</button></div>
+ <div class="m-seg" data-f="rezim"><span>Režim</span><button data-v="">Vše</button><button data-v="tmavy">Tmavý</button><button data-v="svetly">Světlý</button></div>
+ <div class="m-seg" data-f="zarizeni"><span>Zařízení</span><button data-v="">Vše</button><button data-v="desktop">Desktop</button><button data-v="mobil">Mobil</button></div>
+ <div class="m-seg" data-f="dcols"><span>Desktop</span><button data-v="2">2×2</button><button data-v="4">4 vedle sebe</button></div>
+</div>
+<main id="out"></main>
+
+<div class="m-zoom" id="zoom" hidden role="dialog" aria-modal="true" aria-label="Lupa">
+ <div class="m-zt"><span class="m-id" id="zid"></span><b id="zt"></b><small id="zs"></small><span class="sp"></span>
+  <button id="zp" aria-label="Předchozí buňka">← buňka</button><button id="zn" aria-label="Další buňka">buňka →</button>
+  <button id="zu" aria-label="Předchozí řádek">↑</button><button id="zd" aria-label="Další řádek">↓</button><button id="zx">Zavřít (Esc)</button></div>
+ <div class="m-zi" id="zi"><img id="zim" alt=""></div>
+</div>
+
+<script>
+(function () {
+  const M = window.MAKETA, $ = s => document.querySelector(s);
+  if (!M) { $("#out").innerHTML = '<p class="intro">Chybí rendery/screenshoty/maketa/maketa.js – spusť maketa.mjs.</p>'; return; }
+  const DIR = "rendery/screenshoty/maketa/";
+  const BUNKY = ["vs", "vp", "ts", "tp"].filter(b => M.bunky.includes(b));
+  const POPIS = { vs: "vyvážená × střední", vp: "vyvážená × přemrštěná", ts: "tématická × střední", tp: "tématická × přemrštěná" };
+  const ID = b => b[0].toUpperCase() + "·" + b[1].toUpperCase();
+  const TYP = { maturitni: "maturitní", hasicsky: "hasičský", myslivecky: "myslivecký" };
+  const plakat = i => M.rada[i + 1] && !M.rada[i + 1].k ? M.rada[i + 1].titul : "";
+  const datum = new Date(M.datum).toLocaleDateString("cs-CZ", { weekday: "long", day: "numeric", month: "numeric", year: "numeric" });
+
+  $("#jak").innerHTML = `Datum prohlížeče je ${datum}, takže „Tento víkend“ je ${M.vikend}. Web řadí plesy s plakátem napřed, skutečná řada
+    by piloty ukázala až za 12 plakáty, proto je řada přeskládaná: ${M.rada.filter(x => x.k).length} pilotních plesů bez plakátu střídá
+    ${M.rada.filter(x => !x.k).length} skutečných plakátů téhož víkendu. Všechny karty vyrobila funkce <code>card()</code> z app.js
+    (plakáty z řady, piloty ze seznamu Objevovat). Detaily jsou statické stránky <code>/ples/…/</code> bez úprav.`;
+  $("#css1").textContent = M.css.krok5; $("#css2").textContent = M.css.svetlaKarta;
+
+  // skupiny v pořadí: úvod, pak detaily; uvnitř zařízení a režim, aby ↑ ↓ v lupě skákaly mezi sousedními variantami
+  const REZIMY = { tmavy: "tmavý režim", "svetly-dnes": "světlý režim · dnešní tmavá karta, tmavá ilustrace", "svetly-karta": "světlý režim · světlá karta, světlá ilustrace G2 (návrh)", svetly: "světlý režim · světlá ilustrace G2" };
+  const POPISY = {
+    tmavy: "Tmavá karta s tmavou ilustrací buňky a posunutým přechodem.",
+    "svetly-dnes": "Dnešní stav: karta plesu zůstává tmavá i ve světlém režimu, ilustrace je tmavá.",
+    "svetly-karta": "Návrh: krémová karta s tmavým textem a světlou ilustrací (G2 v barevnosti buňky). Přebarví i karty s plakátem.",
+    svetly: "Karta detailu je ve světlém režimu světlá, ilustrace světlá G2 v barevnosti buňky.",
+  };
+  const ZAR = { desktop: "desktop 1440 px", mobil: "mobil 390 px" };
+  const STRANKY = [
+    { k: "uvod", h: "Úvodní stránka – Tento víkend", p: "Řada karet z úvodní stránky, piloty bez plakátu mezi skutečnými plakáty. Na desktopu je vidět prvních pět karet, pod nimi začíná řada „Příští víkend“ (samé plakáty).",
+      rezimy: ["tmavy", "svetly-dnes", "svetly-karta"] },
+    ...["maturitni", "hasicsky", "myslivecky"].map(k => ({ k: "detail-" + k, h: `Detail plesu – ${TYP[k]}`, p: `${M.detail[k].titul} (<code>/ples/${M.detail[k].slug}/</code>), plakát nemá, takže stránka ukazuje ilustraci.`, rezimy: ["tmavy", "svetly"] })),
+  ];
+  const najdi = (stranka, rezim, zarizeni, bunka, pozice) => M.snimky.find(s => s.stranka == stranka && s.rezim == rezim && s.zarizeni == zarizeni && s.bunka == bunka && (s.pozice || null) == (pozice || null));
+  const out = $("#out");
+  for (const S of STRANKY) {
+    const sec = document.createElement("section"); sec.className = "m-sec"; sec.dataset.stranka = S.k;
+    sec.innerHTML = `<h2 class="serif">${S.h}</h2><p>${S.p}</p>`;
+    for (const zarizeni of ["desktop", "mobil"]) for (const rezim of S.rezimy) {
+      const pozice = S.k == "uvod" && zarizeni == "mobil" ? M.pozice.map(x => x.i + 1 + "-" + x.k) : [null];
+      const g = document.createElement("div"); g.className = "m-grp " + zarizeni; g.dataset.rezim = rezim.split("-")[0]; g.dataset.zarizeni = zarizeni;
+      g.innerHTML = `<h3>${ZAR[zarizeni]} · ${REZIMY[rezim]}</h3><p>${POPISY[rezim]}${pozice[0] ? " Na mobilu je vidět jedna karta a kousek další, proto tři pozice řady." : ""}</p>`;
+      for (const poz of pozice) {
+        const row = document.createElement("div"); row.className = "m-row";
+        row.dataset.nazev = `${S.h} · ${ZAR[zarizeni]} · ${REZIMY[rezim]}`;
+        if (poz) {
+          const [n, k] = poz.split("-"), i = +n - 1;
+          row.dataset.nazev += ` · pozice ${n}`;
+          row.innerHTML = `<p class="m-rh"><b>Pozice ${n}: ${TYP[k]}</b> (${M.rada[i].titul}), vpravo začíná plakát ${plakat(i)}</p>`;
+        }
+        const grid = document.createElement("div"); grid.className = "m-grid";
+        for (const b of BUNKY) {
+          const s = najdi(S.k, rezim, zarizeni, b, poz);
+          if (!s) continue;
+          const [w, h] = zarizeni == "desktop" ? [2880, 1800] : [780, 1688];
+          grid.insertAdjacentHTML("beforeend", `<figure class="m-cell"><figcaption><span class="m-id">${ID(b)}</span>${POPIS[b]}</figcaption><img src="${DIR + s.soubor}" width="${w}" height="${h}" loading="lazy" decoding="async" alt="${ID(b)} – ${row.dataset.nazev}" data-b="${b}"></figure>`);
+        }
+        row.append(grid); g.append(row);
+      }
+      sec.append(g);
+    }
+    out.append(sec);
+  }
+
+  // filtry
+  const F = { stranka: "", rezim: "", zarizeni: "", dcols: "2" };
+  try { Object.assign(F, JSON.parse(localStorage.getItem("maketa-filtry") || "{}")); } catch (e) {}
+  function apply() {
+    document.querySelectorAll(".m-seg").forEach(seg => seg.querySelectorAll("button").forEach(bt => bt.setAttribute("aria-pressed", F[seg.dataset.f] == bt.dataset.v)));
+    document.querySelectorAll(".m-sec").forEach(sec => { sec.hidden = !!F.stranka && sec.dataset.stranka != F.stranka; });
+    document.querySelectorAll(".m-grp").forEach(g => { g.hidden = (F.rezim && g.dataset.rezim != F.rezim) || (F.zarizeni && g.dataset.zarizeni != F.zarizeni); });
+    document.body.style.setProperty("--dcols", F.dcols);
+    try { localStorage.setItem("maketa-filtry", JSON.stringify(F)); } catch (e) {}
+  }
+  document.querySelectorAll(".m-seg button").forEach(bt => bt.addEventListener("click", () => { F[bt.closest(".m-seg").dataset.f] = bt.dataset.v; apply(); }));
+  apply();
+
+  // lupa
+  const Z = $("#zoom"), zim = $("#zim");
+  let row = null, bi = 0;
+  const rows = () => [...document.querySelectorAll(".m-row")].filter(r => r.offsetParent);
+  function show() {
+    const imgs = [...row.querySelectorAll("img")], im = imgs[bi];
+    zim.src = im.src; zim.alt = im.alt;
+    $("#zid").textContent = ID(im.dataset.b); $("#zt").textContent = POPIS[im.dataset.b]; $("#zs").textContent = row.dataset.nazev;
+  }
+  function open(im) { row = im.closest(".m-row"); bi = [...row.querySelectorAll("img")].indexOf(im); Z.hidden = false; document.body.style.overflow = "hidden"; show(); $("#zx").focus(); }
+  function close() { Z.hidden = true; document.body.style.overflow = ""; }
+  const krok = d => { const n = row.querySelectorAll("img").length; bi = (bi + d + n) % n; show(); };
+  const radek = d => { const R = rows(), i = R.indexOf(row), j = i + d; if (j < 0 || j >= R.length) return; const b = row.querySelectorAll("img")[bi].dataset.b; row = R[j];
+    const imgs = [...row.querySelectorAll("img")]; bi = Math.max(0, imgs.findIndex(x => x.dataset.b == b)); show(); };
+  out.addEventListener("click", e => { const im = e.target.closest(".m-cell img"); if (im) open(im); });
+  $("#zp").onclick = () => krok(-1); $("#zn").onclick = () => krok(1); $("#zu").onclick = () => radek(-1); $("#zd").onclick = () => radek(1); $("#zx").onclick = close;
+  $("#zi").addEventListener("click", e => { if (e.target != zim) close(); });
+  addEventListener("keydown", e => {
+    if (Z.hidden) return;
+    const k = { ArrowLeft: () => krok(-1), ArrowRight: () => krok(1), ArrowUp: () => radek(-1), ArrowDown: () => radek(1), Escape: close }[e.key];
+    if (k) { e.preventDefault(); k(); }
+  });
+})();
+</script>
+</body>
+</html>
