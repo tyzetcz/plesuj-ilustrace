@@ -5,10 +5,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Makety ilustrací na webu</title>
-<!-- Krok 3b, mimo produkční build (brand/ se nenasazuje): screenshoty skutečného webu z kopie s ilustracemi čtyř buněk matice.
-     Snímky a seznam (rendery/screenshoty/maketa/maketa.js) vyrábí maketa.mjs. Otevřít přímo ze souboru. -->
+<!-- Krok 3b, mimo produkční build (brand/ se nenasazuje): screenshoty skutečného webu z kopie s ilustracemi buněk matice
+     a odstínů podkladu světlé ilustrace. Snímky a seznam (rendery/screenshoty/maketa/maketa.js) vyrábí maketa.mjs,
+     výsledky kontroly odstínů (rendery/kontrola-odstiny.js) vyrob.sh s ODSTINY="vs vp". Otevřít přímo ze souboru. -->
 <link rel="stylesheet" href="../../style.css?v=16">
 <script src="rendery/screenshoty/maketa/maketa.js"></script>
+<script src="rendery/kontrola-odstiny.js"></script>
 <style>
 body{padding:24px clamp(16px,3vw,40px) 80px}
 h1{font-size:30px;margin:0 0 6px}.intro{color:var(--mut);margin:0 0 18px;max-width:96ch}code{overflow-wrap:anywhere}
@@ -23,7 +25,7 @@ h1{font-size:30px;margin:0 0 6px}.intro{color:var(--mut);margin:0 0 18px;max-wid
 .m-seg{display:flex;flex-wrap:wrap;gap:6px;align-items:center}.m-seg>span{font-size:12px;color:var(--mut);text-transform:uppercase;letter-spacing:.06em;margin-right:2px}
 .m-seg button{padding:5px 12px;border-radius:20px;border:1px solid var(--line);background:none;color:var(--ink);font:inherit;font-size:14px;cursor:pointer}
 .m-seg button:hover{border-color:var(--gold)}.m-seg button[aria-pressed=true]{background:#b07a2c;border-color:#b07a2c;color:#fff8ec}
-/* skupiny = stejná stránka, režim a zařízení; ve skupině řádky (pozice řady na mobilu) a v řádku buňky */
+/* skupiny = stejná stránka, režim a zařízení; ve skupině řádky (pozice řady na mobilu) a v řádku buňky nebo odstíny */
 .m-sec>h2{font-size:26px;margin:38px 0 2px}.m-sec>p{color:var(--mut);margin:0;max-width:96ch;font-size:15px}
 .m-grp{margin:22px 0 0;padding:14px 16px 4px;border:1px solid var(--line);border-radius:18px}
 .m-grp h3{font-size:14px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;margin:0 0 3px}
@@ -31,13 +33,22 @@ h1{font-size:30px;margin:0 0 6px}.intro{color:var(--mut);margin:0 0 18px;max-wid
 .m-rh{font-size:13px;color:var(--mut);margin:0 0 6px}.m-rh b{color:var(--ink);font-weight:600}
 .m-row{margin:0 0 14px}
 .m-grid{display:grid;grid-template-columns:repeat(var(--cols),minmax(0,1fr));gap:12px 14px;--cols:4}
-.m-grp.desktop .m-grid{--cols:var(--dcols,2)}
+.m-grp.desktop .m-grid{--cols:var(--dcols,2)}.m-grp.par.desktop .m-grid{--cols:2}
 .m-cell{margin:0;min-width:0}
 .m-cell figcaption{display:flex;gap:8px;align-items:baseline;margin:0 0 6px;font-size:13px;color:var(--mut);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.m-cell img{display:block;width:100%;height:auto;border-radius:10px;border:1px solid var(--line);cursor:zoom-in;background:#ffffff08}
+.m-big{display:block;width:100%;height:auto;border-radius:10px;border:1px solid var(--line);cursor:zoom-in;background:#ffffff08}
 .m-id{font-size:12px;font-weight:700;letter-spacing:.08em;padding:2px 9px;border-radius:12px;background:#b07a2c;color:#fff8ec}
+/* odstíny podkladu: světlý panel v barvě světlé karty (#efe8de) */
+.m-odst{margin-top:30px;padding:2px 18px 14px;border-radius:20px;background:#efe8de;color:var(--ink)}
+.m-odst>h2{margin-top:16px}.m-odst .m-grp{background:#f4efe7}
+.m-pal{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px 14px;margin:14px 0 2px}
+.m-pal>div{font-size:12.5px;line-height:1.5;color:var(--mut)}.m-pal b{color:var(--ink);font-size:14px;margin-right:6px}
+.m-sw{display:flex;gap:4px;margin:4px 0}.m-sw i{flex:1;height:26px;border-radius:6px;border:1px solid #2a20301f}
+.m-sm{display:flex;gap:8px;align-items:flex-end;margin:8px 0 0}.m-sm img{display:block;width:60px;height:80px;border-radius:8px;object-fit:cover}.m-sm img+img{width:34px;height:34px;border-radius:10px}
+.m-st{display:grid;grid-template-columns:auto auto;justify-content:start;gap:1px 10px;font-size:12px;color:var(--mut);margin:6px 0 0}
+.m-st b{color:var(--ink);font-weight:600;font-variant-numeric:tabular-nums}
 [hidden]{display:none!important}
-/* lupa: ← → buňky na stejném místě, ↑ ↓ další řádek (pozice, režim, zařízení), Esc zavře */
+/* lupa: ← → sloupce na stejném místě, ↑ ↓ další řádek, Esc zavře */
 .m-zoom{position:fixed;inset:0;z-index:2000;background:#05030a;display:grid;grid-template-rows:auto minmax(0,1fr);gap:8px;padding:10px 12px 12px}
 .m-zt{display:flex;flex-wrap:wrap;gap:6px 12px;align-items:center;color:#efe8de;font-size:14px}.m-zt .m-id{font-size:13px}
 .m-zt small{color:#b9b0c8}.m-zt .sp{flex:1}
@@ -45,146 +56,222 @@ h1{font-size:30px;margin:0 0 6px}.intro{color:var(--mut);margin:0 0 18px;max-wid
 .m-zt button:hover{border-color:#ffd27a}
 .m-zi{min-height:0;display:grid;place-items:center}
 .m-zi img{max-width:100%;max-height:100%;object-fit:contain;border-radius:8px;box-shadow:0 20px 60px #000c}
-@media(max-width:800px){.m-grid{--cols:2}.m-grp.desktop .m-grid{--cols:1}}
+@media(max-width:800px){.m-grid{--cols:2}.m-grp.desktop .m-grid,.m-grp.par.desktop .m-grid{--cols:1}.m-bar{position:static}.m-pal{grid-template-columns:repeat(2,minmax(0,1fr))}}
 </style>
 </head>
 <body>
 <h1 class="serif">Makety: ilustrace přímo na webu</h1>
-<p class="intro">Čtyři buňky matice (V·S, V·P, T·S, T·P) na skutečném webu z kopie: web běžel lokálně, Playwright ho vyrenderoval
- a požadavky na <code>img/typ/maturitni|hasicsky|myslivecky.webp</code> přesměroval na rendery buněk. Kód webu se nezměnil. Klikem na snímek
- se otevře lupa, šipkami ← → se v ní přepíná mezi buňkami na stejném místě, ↑ ↓ na další řádek.</p>
+<p class="intro">Čtyři buňky matice (V·S, V·P, T·S, T·P) na skutečném webu z kopie a pro světlý režim tři krémovější odstíny podkladu
+ (K1–K3). Web běžel lokálně, Playwright ho vyrenderoval a požadavky na <code>img/typ/maturitni|hasicsky|myslivecky.webp</code>
+ přesměroval na rendery buněk. Kód webu se nezměnil. Ve světlém režimu je karta světlá jako na webu. Klikem na snímek se otevře lupa,
+ šipkami ← → se v ní přepíná mezi sloupci na stejném místě, ↑ ↓ na další řádek.</p>
 
 <div class="legend">
- <div><h3>Buňky</h3><ul>
+ <div><h3>Buňky a odstíny</h3><ul>
   <li><b>V·S</b> vyvážená × střední, <b>V·P</b> vyvážená × přemrštěná</li>
-  <li><b>T·S</b> tématická × střední, <b>T·P</b> tématická × přemrštěná</li></ul>
+  <li><b>T·S</b> tématická × střední, <b>T·P</b> tématická × přemrštěná</li>
+  <li><b>G2, K1, K2, K3</b>: béžový podklad světlé ilustrace u V (dnešní G2 a tři odstíny o kousek světlejší a krémovější). T má podklad v barvě tématu, odstín se jí netýká.</li></ul>
   <p>Myslivecký lesní a mechová zelená, hasičský karmínová (tmavý) a rumělková (světlý), maturitní královská modrá; zlatá je společná.
   Na desktopu jsou buňky ve 2×2 jako výřez matice: sloupce střední | přemrštěná, řádky vyvážená | tématická.</p></div>
  <div><h3>Jak makety vznikly</h3><p id="jak"></p>
-  <p>Mapa místa na detailu v kopii chybí (<code>img/mapa</code> je v .gitignore), místo ní je mapa ČR z webu.</p></div>
+  <p>CSS webu je snímek produkce (<span id="web"></span>). Kopie má starší CSS, ve kterém je karta plesu i ve světlém režimu tmavá.
+  Tmavé snímky jsou z předchozího běhu s CSS kopie, s CSS webu vycházejí bajt po bajtu stejně (ověřeno na V·S).
+  Mapa místa na detailu v kopii chybí (<code>img/mapa</code> je v .gitignore), místo ní je mapa ČR z webu.</p></div>
  <div><h3>Vložené CSS (návrh kroku 5)</h3>
-  <p>Ilustrace bez filtru (šedý a ztmavující filtr byl pro staré fotky), u karet s ilustrací posunutý tmavý přechod
-  (začíná v 50 % místo 30 %), čitelný štítek „ilustrační foto“ na světlé ilustraci. Varianta „světlá karta“ navíc přebarví kartu.</p>
-  <details><summary>Krok 5 (všechny snímky)</summary><pre id="css1"></pre></details>
-  <details><summary>Světlá karta (jen varianta B)</summary><pre id="css2"></pre></details></div>
+  <p>Ilustrace bez filtru (šedý a ztmavující filtr byl pro staré fotky). Karta s ilustrací má posunutý přechod: v tmavém režimu tmavý,
+  ve světlém krémový. Web ve světlém režimu jinak dává krémový přechod 40 px nad popisek a u ilustrace, kde je popisek o štítek delší,
+  zakryje spodek motivu (srovnání je v sekci Úvod).</p>
+  <details><summary>CSS vložené do všech snímků</summary><pre id="css1"></pre></details></div>
  <div><h3>Co vybrat</h3><ul>
   <li><b>Buňku</b>: barevnost V/T a prvky S/P (případně zvlášť pro tmavý a světlý režim).</li>
-  <li><b>Kartu ve světlém režimu</b>: dnešní tmavou kartu s tmavou ilustrací, nebo světlou kartu se světlou ilustrací G2.
-  Světlá karta platí pro všechny karty, takže u tmavých plakátů vznikne dole světlý závoj (je vidět v řadě „Příští víkend“).</li>
+  <li><b>Odstín podkladu</b> světlé ilustrace, pokud vyhraje V: G2, K1, K2 nebo K3 (přepínač „Odstín V“ a sekce Odstíny).</li>
   <li>T·S a obě P jsou v kvalitě WebP 88 nad rozpočtem (až 96 a 19 kB); kvalita 84 a 86 je vrátí pod 80 a 18 kB.</li></ul></div>
 </div>
 
 <div class="m-bar" role="toolbar" aria-label="Filtry">
- <div class="m-seg" data-f="stranka"><span>Stránka</span><button data-v="">Vše</button><button data-v="uvod">Úvod</button><button data-v="detail-maturitni">Detail maturitní</button><button data-v="detail-hasicsky">Detail hasičský</button><button data-v="detail-myslivecky">Detail myslivecký</button></div>
+ <div class="m-seg" data-f="stranka"><span>Stránka</span><button data-v="">Vše</button><button data-v="odstiny">Odstíny</button><button data-v="uvod">Úvod</button><button data-v="detail-maturitni">Detail maturitní</button><button data-v="detail-hasicsky">Detail hasičský</button><button data-v="detail-myslivecky">Detail myslivecký</button></div>
  <div class="m-seg" data-f="rezim"><span>Režim</span><button data-v="">Vše</button><button data-v="tmavy">Tmavý</button><button data-v="svetly">Světlý</button></div>
  <div class="m-seg" data-f="zarizeni"><span>Zařízení</span><button data-v="">Vše</button><button data-v="desktop">Desktop</button><button data-v="mobil">Mobil</button></div>
+ <div class="m-seg" data-f="porovnat"><span>Světlý režim</span><button data-v="bunky">Buňky</button><button data-v="vs">Odstíny V·S</button><button data-v="vp">Odstíny V·P</button></div>
+ <div class="m-seg" data-f="odstin"><span>Odstín V</span><button data-v="">G2</button><button data-v="k1">K1</button><button data-v="k2">K2</button><button data-v="k3">K3</button></div>
  <div class="m-seg" data-f="dcols"><span>Desktop</span><button data-v="2">2×2</button><button data-v="4">4 vedle sebe</button></div>
 </div>
 <main id="out"></main>
 
 <div class="m-zoom" id="zoom" hidden role="dialog" aria-modal="true" aria-label="Lupa">
  <div class="m-zt"><span class="m-id" id="zid"></span><b id="zt"></b><small id="zs"></small><span class="sp"></span>
-  <button id="zp" aria-label="Předchozí buňka">← buňka</button><button id="zn" aria-label="Další buňka">buňka →</button>
+  <button id="zp" aria-label="Předchozí sloupec">← sloupec</button><button id="zn" aria-label="Další sloupec">sloupec →</button>
   <button id="zu" aria-label="Předchozí řádek">↑</button><button id="zd" aria-label="Další řádek">↓</button><button id="zx">Zavřít (Esc)</button></div>
  <div class="m-zi" id="zi"><img id="zim" alt=""></div>
 </div>
 
 <script>
 (function () {
-  const M = window.MAKETA, $ = s => document.querySelector(s);
+  const M = window.MAKETA, KON = window.KONTROLA || {}, $ = s => document.querySelector(s);
   if (!M) { $("#out").innerHTML = '<p class="intro">Chybí rendery/screenshoty/maketa/maketa.js – spusť maketa.mjs.</p>'; return; }
-  const DIR = "rendery/screenshoty/maketa/";
+  const DIR = "rendery/screenshoty/maketa/", WEBP = "rendery/webp/";
   const BUNKY = ["vs", "vp", "ts", "tp"].filter(b => M.bunky.includes(b));
   const POPIS = { vs: "vyvážená × střední", vp: "vyvážená × přemrštěná", ts: "tématická × střední", tp: "tématická × přemrštěná" };
   const ID = b => b[0].toUpperCase() + "·" + b[1].toUpperCase();
-  const TYP = { maturitni: "maturitní", hasicsky: "hasičský", myslivecky: "myslivecký" };
+  // odstíny podkladu světlé ilustrace (jen V): papíry palety G2 před přimícháním tématu – podklad, paprsky, čelní rám (hex, L*, odstín)
+  const ODST = [
+    { k: "", id: "G2", popis: "dnešní světlá G2", sw: [["#d4ba96", 76.9, 79.8], ["#ddc6a4", 81.0, 81.7], ["#af916d", 62.1, 75.3]] },
+    { k: "k1", id: "K1", popis: "L* +2, odstín +3°", sw: [["#d7c09c", 78.8, 82.8], ["#e0ccaa", 82.9, 84.9], ["#b29773", 64.0, 78.1]] },
+    { k: "k2", id: "K2", popis: "L* +4, odstín +6°", sw: [["#dbc6a2", 80.8, 84.8], ["#e4d2b1", 84.9, 86.6], ["#b59d79", 66.0, 81.1]] },
+    { k: "k3", id: "K3", popis: "L* +6, odstín +9°", sw: [["#decda9", 82.9, 89.1], ["#e7d9b7", 87.0, 91.7], ["#b8a37f", 68.0, 84.2]] },
+  ].filter(o => !o.k || M.bunky.includes("vs" + o.k));
+  const odst = k => ODST.find(o => o.k == k) || ODST[0];
+  const PILOTI = ["maturitni", "hasicsky", "myslivecky"], TYP = { maturitni: "maturitní", hasicsky: "hasičský", myslivecky: "myslivecký" };
   const plakat = i => M.rada[i + 1] && !M.rada[i + 1].k ? M.rada[i + 1].titul : "";
   const datum = new Date(M.datum).toLocaleDateString("cs-CZ", { weekday: "long", day: "numeric", month: "numeric", year: "numeric" });
+  const f1 = x => x.toLocaleString("cs-CZ", { minimumFractionDigits: 1, maximumFractionDigits: 1 });
 
   $("#jak").innerHTML = `Datum prohlížeče je ${datum}, takže „Tento víkend“ je ${M.vikend}. Web řadí plesy s plakátem napřed, skutečná řada
     by piloty ukázala až za 12 plakáty, proto je řada přeskládaná: ${M.rada.filter(x => x.k).length} pilotních plesů bez plakátu střídá
     ${M.rada.filter(x => !x.k).length} skutečných plakátů téhož víkendu. Všechny karty vyrobila funkce <code>card()</code> z app.js
     (plakáty z řady, piloty ze seznamu Objevovat). Detaily jsou statické stránky <code>/ples/…/</code> bez úprav.`;
-  $("#css1").textContent = M.css.krok5; $("#css2").textContent = M.css.svetlaKarta;
+  $("#web").textContent = M.css.web; $("#css1").textContent = M.css.krok5;
 
-  // skupiny v pořadí: úvod, pak detaily; uvnitř zařízení a režim, aby ↑ ↓ v lupě skákaly mezi sousedními variantami
-  const REZIMY = { tmavy: "tmavý režim", "svetly-dnes": "světlý režim · dnešní tmavá karta, tmavá ilustrace", "svetly-karta": "světlý režim · světlá karta, světlá ilustrace G2 (návrh)", svetly: "světlý režim · světlá ilustrace G2" };
+  const REZIMY = { tmavy: "tmavý režim", svetly: "světlý režim" };
   const POPISY = {
-    tmavy: "Tmavá karta s tmavou ilustrací buňky a posunutým přechodem.",
-    "svetly-dnes": "Dnešní stav: karta plesu zůstává tmavá i ve světlém režimu, ilustrace je tmavá.",
-    "svetly-karta": "Návrh: krémová karta s tmavým textem a světlou ilustrací (G2 v barevnosti buňky). Přebarví i karty s plakátem.",
-    svetly: "Karta detailu je ve světlém režimu světlá, ilustrace světlá G2 v barevnosti buňky.",
+    uvod: { tmavy: "Tmavá karta s tmavou ilustrací buňky a posunutým tmavým přechodem.",
+      svetly: "Světlá karta jako na webu, světlá ilustrace buňky, u karet s ilustrací posunutý krémový přechod. Karty s plakátem mají krémový přechod pod popiskem jako na webu." },
+    detail: { tmavy: "Tmavá ilustrace buňky.", svetly: "Světlá ilustrace buňky; rám a štítek „ilustrační foto“ podle CSS webu." },
   };
   const ZAR = { desktop: "desktop 1440 px", mobil: "mobil 390 px" };
   const STRANKY = [
-    { k: "uvod", h: "Úvodní stránka – Tento víkend", p: "Řada karet z úvodní stránky, piloty bez plakátu mezi skutečnými plakáty. Na desktopu je vidět prvních pět karet, pod nimi začíná řada „Příští víkend“ (samé plakáty).",
-      rezimy: ["tmavy", "svetly-dnes", "svetly-karta"] },
-    ...["maturitni", "hasicsky", "myslivecky"].map(k => ({ k: "detail-" + k, h: `Detail plesu – ${TYP[k]}`, p: `${M.detail[k].titul} (<code>/ples/${M.detail[k].slug}/</code>), plakát nemá, takže stránka ukazuje ilustraci.`, rezimy: ["tmavy", "svetly"] })),
+    { k: "uvod", h: "Úvodní stránka – Tento víkend", p: "Řada karet z úvodní stránky, piloty bez plakátu mezi skutečnými plakáty. Na desktopu je vidět prvních pět karet, pod nimi začíná řada „Příští víkend“ (samé plakáty)." },
+    ...PILOTI.map(k => ({ k: "detail-" + k, h: `Detail plesu – ${TYP[k]}`, p: `${M.detail[k].titul} (<code>/ples/${M.detail[k].slug}/</code>), plakát nemá, takže stránka ukazuje ilustraci.` })),
   ];
   const najdi = (stranka, rezim, zarizeni, bunka, pozice) => M.snimky.find(s => s.stranka == stranka && s.rezim == rezim && s.zarizeni == zarizeni && s.bunka == bunka && (s.pozice || null) == (pozice || null));
-  const out = $("#out");
-  for (const S of STRANKY) {
-    const sec = document.createElement("section"); sec.className = "m-sec"; sec.dataset.stranka = S.k;
-    sec.innerHTML = `<h2 class="serif">${S.h}</h2><p>${S.p}</p>`;
-    for (const zarizeni of ["desktop", "mobil"]) for (const rezim of S.rezimy) {
-      const pozice = S.k == "uvod" && zarizeni == "mobil" ? M.pozice.map(x => x.i + 1 + "-" + x.k) : [null];
-      const g = document.createElement("div"); g.className = "m-grp " + zarizeni; g.dataset.rezim = rezim.split("-")[0]; g.dataset.zarizeni = zarizeni;
-      g.innerHTML = `<h3>${ZAR[zarizeni]} · ${REZIMY[rezim]}</h3><p>${POPISY[rezim]}${pozice[0] ? " Na mobilu je vidět jedna karta a kousek další, proto tři pozice řady." : ""}</p>`;
-      for (const poz of pozice) {
-        const row = document.createElement("div"); row.className = "m-row";
-        row.dataset.nazev = `${S.h} · ${ZAR[zarizeni]} · ${REZIMY[rezim]}`;
-        if (poz) {
-          const [n, k] = poz.split("-"), i = +n - 1;
-          row.dataset.nazev += ` · pozice ${n}`;
-          row.innerHTML = `<p class="m-rh"><b>Pozice ${n}: ${TYP[k]}</b> (${M.rada[i].titul}), vpravo začíná plakát ${plakat(i)}</p>`;
-        }
-        const grid = document.createElement("div"); grid.className = "m-grid";
-        for (const b of BUNKY) {
-          const s = najdi(S.k, rezim, zarizeni, b, poz);
-          if (!s) continue;
-          const [w, h] = zarizeni == "desktop" ? [2880, 1800] : [780, 1688];
-          grid.insertAdjacentHTML("beforeend", `<figure class="m-cell"><figcaption><span class="m-id">${ID(b)}</span>${POPIS[b]}</figcaption><img src="${DIR + s.soubor}" width="${w}" height="${h}" loading="lazy" decoding="async" alt="${ID(b)} – ${row.dataset.nazev}" data-b="${b}"></figure>`);
+  const el = (tag, cls) => { const e = document.createElement(tag); if (cls) e.className = cls; return e; };
+  const obr = (src, w, h, sl, nazev) => `<img class="m-big" src="${src}" width="${w}" height="${h}" loading="lazy" decoding="async" alt="${sl.id} – ${nazev}" data-key="${sl.key}" data-id="${sl.id}" data-popis="${sl.popis}">`;
+
+  // filtry (porovnat a odstín mění sloupce světlých skupin, proto se stránka při každé změně postaví znovu)
+  const F = { stranka: "", rezim: "", zarizeni: "", porovnat: "bunky", odstin: "", dcols: "2" };
+  const PLATNE = { stranka: ["", "odstiny", ...STRANKY.map(s => s.k)], rezim: ["", "tmavy", "svetly"], zarizeni: ["", "desktop", "mobil"],
+    porovnat: ["bunky", "vs", "vp"], odstin: ODST.map(o => o.k), dcols: ["2", "4"] };
+  try { const u = JSON.parse(localStorage.getItem("maketa-filtry") || "{}"); for (const k in F) if (PLATNE[k].includes(u[k])) F[k] = u[k]; } catch (e) {}
+
+  // sloupce skupiny: tmavý režim = čtyři buňky; světlý = čtyři buňky (V v odstínu F.odstin), nebo čtyři odstíny jedné V buňky
+  const sloupce = rezim => rezim == "svetly" && F.porovnat != "bunky"
+    ? ODST.map(o => ({ b: F.porovnat + o.k, key: o.id, id: `${ID(F.porovnat)} ${o.id}`, popis: o.popis }))
+    : BUNKY.map(b => { const o = rezim == "svetly" && b[0] == "v" ? odst(F.odstin) : null;
+        return { b: b + (o ? o.k : ""), key: b, id: ID(b) + (o && o.k ? " " + o.id : ""), popis: POPIS[b] + (o && o.k ? ", odstín " + o.id : "") }; });
+  const pozice = (stranka, zarizeni) => stranka == "uvod" && zarizeni == "mobil" ? M.pozice.map(x => x.i + 1 + "-" + x.k) : [null];
+  function radek(nazev, poz, sl, hledej) {
+    const row = el("div", "m-row"); row.dataset.nazev = nazev;
+    if (poz) {
+      const [n, k] = poz.split("-"), i = +n - 1;
+      row.dataset.nazev += ` · pozice ${n}`;
+      row.innerHTML = `<p class="m-rh"><b>Pozice ${n}: ${TYP[k]}</b> (${M.rada[i].titul}), vpravo začíná plakát ${plakat(i)}</p>`;
+    }
+    const grid = el("div", "m-grid");
+    for (const c of sl) {
+      const s = hledej(c, poz); if (!s) continue;
+      const [w, h] = s.zarizeni == "desktop" ? [2880, 1800] : [780, 1688];
+      grid.insertAdjacentHTML("beforeend", `<figure class="m-cell"><figcaption><span class="m-id">${c.id}</span>${c.popis}</figcaption>${obr(DIR + s.soubor, w, h, c, row.dataset.nazev)}</figure>`);
+    }
+    row.append(grid); return row;
+  }
+  function skupina(S, zarizeni, rezim) {
+    const g = el("div", "m-grp " + zarizeni); g.dataset.rezim = rezim; g.dataset.zarizeni = zarizeni;
+    const co = rezim != "svetly" ? "" : F.porovnat == "bunky" ? ` · V v odstínu ${odst(F.odstin).id}` : ` · odstíny ${ID(F.porovnat)}`;
+    const poz = pozice(S.k, zarizeni);
+    g.innerHTML = `<h3>${ZAR[zarizeni]} · ${REZIMY[rezim]}${co}</h3><p>${POPISY[S.k.split("-")[0]][rezim]}${poz[0] ? " Na mobilu je vidět jedna karta a kousek další, proto tři pozice řady." : ""}</p>`;
+    const sl = sloupce(rezim);
+    for (const p of poz) g.append(radek(`${S.h} · ${ZAR[zarizeni]} · ${REZIMY[rezim]}${co}`, p, sl, (c, p) => najdi(S.k, rezim, zarizeni, c.b, p)));
+    return g;
+  }
+  // srovnání krémového přechodu světlé karty: dnes na webu × návrh kroku 5 (V·S, G2)
+  function srovnani(zarizeni) {
+    if (!najdi("uvod", "svetly-web", zarizeni, "vs", pozice("uvod", zarizeni)[0])) return null;
+    const g = el("div", "m-grp par " + zarizeni); g.dataset.rezim = "svetly"; g.dataset.zarizeni = zarizeni;
+    g.innerHTML = `<h3>${ZAR[zarizeni]} · světlý režim · srovnání přechodu (V·S, G2)</h3><p>Vlevo světlá karta, jak je dnes na webu: krémový přechod začíná 40 px nad popiskem,
+      a protože má karta s ilustrací popisek o štítek „ilustrační foto“ delší, zakryje spodek motivu (stuhy rozety, krempu přilby, listy u paroží).
+      Vpravo návrh pro krok 5: přechod jen u karet s ilustrací posunutý jako v tmavém režimu (průhledný do 50 %, 80 % v 72 %, plný v 94 % výšky obrázku). Karty s plakátem se nemění.</p>`;
+    const sl = [{ rezim: "svetly-web", key: "web", id: "web dnes", popis: "přechod nad popiskem" }, { rezim: "svetly", key: "navrh", id: "návrh", popis: "posunutý krémový přechod" }];
+    for (const p of pozice("uvod", zarizeni)) g.append(radek(`Úvod · ${ZAR[zarizeni]} · srovnání přechodu`, p, sl, (c, p) => najdi("uvod", c.rezim, zarizeni, "vs", p)));
+    return g;
+  }
+  // odstíny podkladu: ilustrace vedle sebe na barvě světlé karty, pod nimi výpis 60×80, našeptávač 34×34 a kontrola.py
+  const stat = r => `<div class="m-st"><span>60×80 L*</span><b>${f1(r.L)}</b><span>ΔL* 60×80 / 34×34</span><b>${f1(r.dL)} / ${f1(r.dLxs)}</b>
+    <span>hnědá</span><b>${f1(r.hneda)} %</b><span>výraznost V</span><b>${r.V.toLocaleString("cs-CZ")}</b>
+    <span>WebP plná / -sm / -xs</span><b>${r.kB.map(f1).join(" / ")} kB</b><span>laťka</span><b>${r.ok ? "v laťce" : "mimo laťku"}</b></div>`;
+  function odstiny() {
+    const sec = el("section", "m-sec m-odst"); sec.dataset.stranka = "odstiny"; sec.dataset.rezim = "svetly"; sec.dataset.theme = "light";
+    sec.innerHTML = `<h2 class="serif">Odstíny podkladu světlé ilustrace (V·S a V·P)</h2>
+      <p>Papíry světlé palety G2 o kousek světlejší a víc do krémova: světlost L* +2 / +4 / +6, odstín +3 / +6 / +9° (od písku k žluté), sytost jen nepatrně nižší.
+      Světlo, vinětace a šero na stupních zůstávají jako v G2. Panel má barvu světlé karty (<code>#efe8de</code>). Pod ilustrací je výpis 60×80 a našeptávač 34×34
+      ve skutečné velikosti a výsledky <code>kontrola.py</code> (laťka: L* 60–75, ΔL* ≥ 12, hnědá ≤ 25 %, V ≥ 1,5).</p>
+      <div class="m-pal">${ODST.map(o => `<div><b>${o.id}</b>${o.popis}<div class="m-sw">${o.sw.map(([c]) => `<i style="background:${c}" title="${c}"></i>`).join("")}</div>
+        ${o.sw.map(([c, L, h], i) => `${["podklad", "paprsky", "čelní rám"][i]} <code>${c}</code> L* ${f1(L)}, ${f1(h)}°`).join("<br>")}</div>`).join("")}</div>`;
+    for (const c of ["vs", "vp"]) {
+      const g = el("div", "m-grp"); g.innerHTML = `<h3>${ID(c)} · ${POPIS[c]}</h3>`;
+      for (const k of PILOTI) {
+        const row = el("div", "m-row"); row.dataset.nazev = `Odstíny ${ID(c)} · ${TYP[k]}`;
+        row.innerHTML = `<p class="m-rh"><b>${TYP[k]}</b></p>`;
+        const grid = el("div", "m-grid");
+        for (const o of ODST) {
+          const n = `m${c}${o.k}-${k}`, r = KON[n + "-svetly"], sl = { key: o.id, id: `${ID(c)} ${o.id}`, popis: `${TYP[k]}, ${o.popis}` };
+          grid.insertAdjacentHTML("beforeend", `<figure class="m-cell"><figcaption><span class="m-id">${o.id}</span>${o.popis}</figcaption>${obr(`${WEBP}${n}-svetly.webp`, 900, 1200, sl, row.dataset.nazev)}
+            <div class="m-sm"><img src="${WEBP}${n}-sm-svetly.webp" alt="" width="60" height="80" loading="lazy"><img src="${WEBP}${n}-xs-svetly.webp" alt="" width="34" height="34" loading="lazy"></div>${r ? stat(r) : ""}</figure>`);
         }
         row.append(grid); g.append(row);
       }
       sec.append(g);
     }
-    out.append(sec);
+    return sec;
   }
 
-  // filtry
-  const F = { stranka: "", rezim: "", zarizeni: "", dcols: "2" };
-  try { Object.assign(F, JSON.parse(localStorage.getItem("maketa-filtry") || "{}")); } catch (e) {}
+  const out = $("#out");
+  function build() {
+    out.innerHTML = "";
+    out.append(odstiny());
+    for (const S of STRANKY) {
+      const sec = el("section", "m-sec"); sec.dataset.stranka = S.k;
+      sec.innerHTML = `<h2 class="serif">${S.h}</h2><p>${S.p}</p>`;
+      for (const zarizeni of ["desktop", "mobil"]) for (const rezim of ["tmavy", "svetly"]) sec.append(skupina(S, zarizeni, rezim));
+      if (S.k == "uvod") for (const zarizeni of ["desktop", "mobil"]) { const g = srovnani(zarizeni); if (g) sec.append(g); }
+      out.append(sec);
+    }
+  }
   function apply() {
     document.querySelectorAll(".m-seg").forEach(seg => seg.querySelectorAll("button").forEach(bt => bt.setAttribute("aria-pressed", F[seg.dataset.f] == bt.dataset.v)));
-    document.querySelectorAll(".m-sec").forEach(sec => { sec.hidden = !!F.stranka && sec.dataset.stranka != F.stranka; });
-    document.querySelectorAll(".m-grp").forEach(g => { g.hidden = (F.rezim && g.dataset.rezim != F.rezim) || (F.zarizeni && g.dataset.zarizeni != F.zarizeni); });
+    $('.m-seg[data-f="odstin"]').hidden = F.porovnat != "bunky";
+    document.querySelectorAll(".m-sec").forEach(sec => { sec.hidden = (!!F.stranka && sec.dataset.stranka != F.stranka) || (sec.dataset.rezim && F.rezim && sec.dataset.rezim != F.rezim); });
+    document.querySelectorAll(".m-grp[data-rezim]").forEach(g => { g.hidden = (F.rezim && g.dataset.rezim != F.rezim) || (F.zarizeni && g.dataset.zarizeni != F.zarizeni); });
     document.body.style.setProperty("--dcols", F.dcols);
     try { localStorage.setItem("maketa-filtry", JSON.stringify(F)); } catch (e) {}
   }
-  document.querySelectorAll(".m-seg button").forEach(bt => bt.addEventListener("click", () => { F[bt.closest(".m-seg").dataset.f] = bt.dataset.v; apply(); }));
-  apply();
+  document.querySelectorAll(".m-seg button").forEach(bt => bt.addEventListener("click", () => {
+    const f = bt.closest(".m-seg").dataset.f; F[f] = bt.dataset.v;
+    if (f == "porovnat" || f == "odstin") build();
+    apply();
+  }));
+  build(); apply();
 
   // lupa
   const Z = $("#zoom"), zim = $("#zim");
   let row = null, bi = 0;
   const rows = () => [...document.querySelectorAll(".m-row")].filter(r => r.offsetParent);
+  const imgs = r => [...r.querySelectorAll("img.m-big")];
   function show() {
-    const imgs = [...row.querySelectorAll("img")], im = imgs[bi];
+    const im = imgs(row)[bi];
     zim.src = im.src; zim.alt = im.alt;
-    $("#zid").textContent = ID(im.dataset.b); $("#zt").textContent = POPIS[im.dataset.b]; $("#zs").textContent = row.dataset.nazev;
+    $("#zid").textContent = im.dataset.id; $("#zt").textContent = im.dataset.popis; $("#zs").textContent = row.dataset.nazev;
   }
-  function open(im) { row = im.closest(".m-row"); bi = [...row.querySelectorAll("img")].indexOf(im); Z.hidden = false; document.body.style.overflow = "hidden"; show(); $("#zx").focus(); }
+  function open(im) { row = im.closest(".m-row"); bi = imgs(row).indexOf(im); Z.hidden = false; document.body.style.overflow = "hidden"; show(); $("#zx").focus(); }
   function close() { Z.hidden = true; document.body.style.overflow = ""; }
-  const krok = d => { const n = row.querySelectorAll("img").length; bi = (bi + d + n) % n; show(); };
-  const radek = d => { const R = rows(), i = R.indexOf(row), j = i + d; if (j < 0 || j >= R.length) return; const b = row.querySelectorAll("img")[bi].dataset.b; row = R[j];
-    const imgs = [...row.querySelectorAll("img")]; bi = Math.max(0, imgs.findIndex(x => x.dataset.b == b)); show(); };
-  out.addEventListener("click", e => { const im = e.target.closest(".m-cell img"); if (im) open(im); });
-  $("#zp").onclick = () => krok(-1); $("#zn").onclick = () => krok(1); $("#zu").onclick = () => radek(-1); $("#zd").onclick = () => radek(1); $("#zx").onclick = close;
+  const krok = d => { const n = imgs(row).length; bi = (bi + d + n) % n; show(); };
+  const dalsi = d => { const R = rows(), j = R.indexOf(row) + d; if (j < 0 || j >= R.length) return; const key = imgs(row)[bi].dataset.key; row = R[j];
+    const i = imgs(row).findIndex(x => x.dataset.key == key); bi = i >= 0 ? i : Math.min(bi, imgs(row).length - 1); show(); };
+  out.addEventListener("click", e => { const im = e.target.closest("img.m-big"); if (im) open(im); });
+  $("#zp").onclick = () => krok(-1); $("#zn").onclick = () => krok(1); $("#zu").onclick = () => dalsi(-1); $("#zd").onclick = () => dalsi(1); $("#zx").onclick = close;
   $("#zi").addEventListener("click", e => { if (e.target != zim) close(); });
   addEventListener("keydown", e => {
     if (Z.hidden) return;
-    const k = { ArrowLeft: () => krok(-1), ArrowRight: () => krok(1), ArrowUp: () => radek(-1), ArrowDown: () => radek(1), Escape: close }[e.key];
+    const k = { ArrowLeft: () => krok(-1), ArrowRight: () => krok(1), ArrowUp: () => dalsi(-1), ArrowDown: () => dalsi(1), Escape: close }[e.key];
     if (k) { e.preventDefault(); k(); }
   });
 })();

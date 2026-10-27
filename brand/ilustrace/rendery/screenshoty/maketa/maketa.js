@@ -4,9 +4,15 @@ window.MAKETA = {
  "vikend": "15.–17. 1. 2027",
  "bunky": [
   "vp",
-  "vs",
   "ts",
-  "tp"
+  "tp",
+  "vs",
+  "vsk1",
+  "vsk2",
+  "vsk3",
+  "vpk1",
+  "vpk2",
+  "vpk3"
  ],
  "rada": [
   {
@@ -102,8 +108,9 @@ window.MAKETA = {
   }
  },
  "css": {
-  "krok5": ".pc .ill img,.ls img.ill,.pp.ill img,.pcard.ill .pfr img{filter:none}\n.pc .ph.ill::after{background:linear-gradient(transparent 50%,#0b0812cc 72%,#0b0812 94%)}\n[data-theme=light] .pcard.ill .uv{background:#2a2030cc;color:#efe8de}",
-  "svetlaKarta": "[data-theme=light] .pc,[data-theme=light] .pc .dt{--t:42 32 48;--ink:#2a2030;--mut:#5a4f60;--gold:#7d500e;--bg2:#efe8de;--line:#2a203024;color:var(--ink)}\n[data-theme=light] .pc{background:var(--bg2)}[data-theme=light] .pc:hover{box-shadow:0 30px 60px -24px #2a203066,0 0 0 1px rgb(var(--t) / .133)}\n[data-theme=light] .pc .ph::after{background:linear-gradient(transparent 30%,#efe8decc 58%,#efe8de 92%)}\n[data-theme=light] .pc .ph.ill::after{background:linear-gradient(transparent 50%,#efe8decc 72%,#efe8de 94%)}\n[data-theme=light] .pc h3{text-shadow:0 0 2px #efe8de,0 0 16px #efe8de}[data-theme=light] .pc .m{color:var(--mut)}\n[data-theme=light] .pc .dt{background:#efe8dee0;border-color:var(--line)}[data-theme=light] .pc .hrt{background:#efe8dec8}[data-theme=light] .pc .hrt svg{stroke:var(--ink)}\n[data-theme=light] .pc .uv{background:rgb(var(--t) / .1);color:var(--mut)}"
+  "krok5": ".pc .ill img,.ls img.ill,.pp.ill img,.pcard.ill .pfr img{filter:none}\n.pc .ph.ill::after{background:linear-gradient(transparent 50%,#0b0812cc 72%,#0b0812 94%)}\n[data-theme=light] .pc .ph.ill::after{display:block;background:linear-gradient(#efe8de00 50%,#efe8decc 72%,#efe8de 94%)}\n[data-theme=light] .pc .ph.ill~.cap::before{display:none}",
+  "krok5Web": ".pc .ill img,.ls img.ill,.pp.ill img,.pcard.ill .pfr img{filter:none}\n.pc .ph.ill::after{background:linear-gradient(transparent 50%,#0b0812cc 72%,#0b0812 94%)}",
+  "web": "style.css?v=20 a seo.css?v=20 z 27. 10. 2026"
  },
  "snimky": [
   {
@@ -112,14 +119,6 @@ window.MAKETA = {
    "rezim": "tmavy",
    "zarizeni": "desktop",
    "bunka": "vp",
-   "pozice": null
-  },
-  {
-   "soubor": "uvod-tmavy-desktop-vs.webp",
-   "stranka": "uvod",
-   "rezim": "tmavy",
-   "zarizeni": "desktop",
-   "bunka": "vs",
    "pozice": null
   },
   {
@@ -160,30 +159,6 @@ window.MAKETA = {
    "rezim": "tmavy",
    "zarizeni": "mobil",
    "bunka": "vp",
-   "pozice": "5-myslivecky"
-  },
-  {
-   "soubor": "uvod-tmavy-mobil-vs-1-maturitni.webp",
-   "stranka": "uvod",
-   "rezim": "tmavy",
-   "zarizeni": "mobil",
-   "bunka": "vs",
-   "pozice": "1-maturitni"
-  },
-  {
-   "soubor": "uvod-tmavy-mobil-vs-3-hasicsky.webp",
-   "stranka": "uvod",
-   "rezim": "tmavy",
-   "zarizeni": "mobil",
-   "bunka": "vs",
-   "pozice": "3-hasicsky"
-  },
-  {
-   "soubor": "uvod-tmavy-mobil-vs-5-myslivecky.webp",
-   "stranka": "uvod",
-   "rezim": "tmavy",
-   "zarizeni": "mobil",
-   "bunka": "vs",
    "pozice": "5-myslivecky"
   },
   {
@@ -235,274 +210,11 @@ window.MAKETA = {
    "pozice": "5-myslivecky"
   },
   {
-   "soubor": "uvod-svetly-dnes-desktop-vp.webp",
-   "stranka": "uvod",
-   "rezim": "svetly-dnes",
-   "zarizeni": "desktop",
-   "bunka": "vp",
-   "pozice": null
-  },
-  {
-   "soubor": "uvod-svetly-dnes-desktop-vs.webp",
-   "stranka": "uvod",
-   "rezim": "svetly-dnes",
-   "zarizeni": "desktop",
-   "bunka": "vs",
-   "pozice": null
-  },
-  {
-   "soubor": "uvod-svetly-dnes-desktop-ts.webp",
-   "stranka": "uvod",
-   "rezim": "svetly-dnes",
-   "zarizeni": "desktop",
-   "bunka": "ts",
-   "pozice": null
-  },
-  {
-   "soubor": "uvod-svetly-dnes-desktop-tp.webp",
-   "stranka": "uvod",
-   "rezim": "svetly-dnes",
-   "zarizeni": "desktop",
-   "bunka": "tp",
-   "pozice": null
-  },
-  {
-   "soubor": "uvod-svetly-dnes-mobil-vp-1-maturitni.webp",
-   "stranka": "uvod",
-   "rezim": "svetly-dnes",
-   "zarizeni": "mobil",
-   "bunka": "vp",
-   "pozice": "1-maturitni"
-  },
-  {
-   "soubor": "uvod-svetly-dnes-mobil-vp-3-hasicsky.webp",
-   "stranka": "uvod",
-   "rezim": "svetly-dnes",
-   "zarizeni": "mobil",
-   "bunka": "vp",
-   "pozice": "3-hasicsky"
-  },
-  {
-   "soubor": "uvod-svetly-dnes-mobil-vp-5-myslivecky.webp",
-   "stranka": "uvod",
-   "rezim": "svetly-dnes",
-   "zarizeni": "mobil",
-   "bunka": "vp",
-   "pozice": "5-myslivecky"
-  },
-  {
-   "soubor": "uvod-svetly-dnes-mobil-vs-1-maturitni.webp",
-   "stranka": "uvod",
-   "rezim": "svetly-dnes",
-   "zarizeni": "mobil",
-   "bunka": "vs",
-   "pozice": "1-maturitni"
-  },
-  {
-   "soubor": "uvod-svetly-dnes-mobil-vs-3-hasicsky.webp",
-   "stranka": "uvod",
-   "rezim": "svetly-dnes",
-   "zarizeni": "mobil",
-   "bunka": "vs",
-   "pozice": "3-hasicsky"
-  },
-  {
-   "soubor": "uvod-svetly-dnes-mobil-vs-5-myslivecky.webp",
-   "stranka": "uvod",
-   "rezim": "svetly-dnes",
-   "zarizeni": "mobil",
-   "bunka": "vs",
-   "pozice": "5-myslivecky"
-  },
-  {
-   "soubor": "uvod-svetly-dnes-mobil-ts-1-maturitni.webp",
-   "stranka": "uvod",
-   "rezim": "svetly-dnes",
-   "zarizeni": "mobil",
-   "bunka": "ts",
-   "pozice": "1-maturitni"
-  },
-  {
-   "soubor": "uvod-svetly-dnes-mobil-ts-3-hasicsky.webp",
-   "stranka": "uvod",
-   "rezim": "svetly-dnes",
-   "zarizeni": "mobil",
-   "bunka": "ts",
-   "pozice": "3-hasicsky"
-  },
-  {
-   "soubor": "uvod-svetly-dnes-mobil-ts-5-myslivecky.webp",
-   "stranka": "uvod",
-   "rezim": "svetly-dnes",
-   "zarizeni": "mobil",
-   "bunka": "ts",
-   "pozice": "5-myslivecky"
-  },
-  {
-   "soubor": "uvod-svetly-dnes-mobil-tp-1-maturitni.webp",
-   "stranka": "uvod",
-   "rezim": "svetly-dnes",
-   "zarizeni": "mobil",
-   "bunka": "tp",
-   "pozice": "1-maturitni"
-  },
-  {
-   "soubor": "uvod-svetly-dnes-mobil-tp-3-hasicsky.webp",
-   "stranka": "uvod",
-   "rezim": "svetly-dnes",
-   "zarizeni": "mobil",
-   "bunka": "tp",
-   "pozice": "3-hasicsky"
-  },
-  {
-   "soubor": "uvod-svetly-dnes-mobil-tp-5-myslivecky.webp",
-   "stranka": "uvod",
-   "rezim": "svetly-dnes",
-   "zarizeni": "mobil",
-   "bunka": "tp",
-   "pozice": "5-myslivecky"
-  },
-  {
-   "soubor": "uvod-svetly-karta-desktop-vp.webp",
-   "stranka": "uvod",
-   "rezim": "svetly-karta",
-   "zarizeni": "desktop",
-   "bunka": "vp",
-   "pozice": null
-  },
-  {
-   "soubor": "uvod-svetly-karta-desktop-vs.webp",
-   "stranka": "uvod",
-   "rezim": "svetly-karta",
-   "zarizeni": "desktop",
-   "bunka": "vs",
-   "pozice": null
-  },
-  {
-   "soubor": "uvod-svetly-karta-desktop-ts.webp",
-   "stranka": "uvod",
-   "rezim": "svetly-karta",
-   "zarizeni": "desktop",
-   "bunka": "ts",
-   "pozice": null
-  },
-  {
-   "soubor": "uvod-svetly-karta-desktop-tp.webp",
-   "stranka": "uvod",
-   "rezim": "svetly-karta",
-   "zarizeni": "desktop",
-   "bunka": "tp",
-   "pozice": null
-  },
-  {
-   "soubor": "uvod-svetly-karta-mobil-vp-1-maturitni.webp",
-   "stranka": "uvod",
-   "rezim": "svetly-karta",
-   "zarizeni": "mobil",
-   "bunka": "vp",
-   "pozice": "1-maturitni"
-  },
-  {
-   "soubor": "uvod-svetly-karta-mobil-vp-3-hasicsky.webp",
-   "stranka": "uvod",
-   "rezim": "svetly-karta",
-   "zarizeni": "mobil",
-   "bunka": "vp",
-   "pozice": "3-hasicsky"
-  },
-  {
-   "soubor": "uvod-svetly-karta-mobil-vp-5-myslivecky.webp",
-   "stranka": "uvod",
-   "rezim": "svetly-karta",
-   "zarizeni": "mobil",
-   "bunka": "vp",
-   "pozice": "5-myslivecky"
-  },
-  {
-   "soubor": "uvod-svetly-karta-mobil-vs-1-maturitni.webp",
-   "stranka": "uvod",
-   "rezim": "svetly-karta",
-   "zarizeni": "mobil",
-   "bunka": "vs",
-   "pozice": "1-maturitni"
-  },
-  {
-   "soubor": "uvod-svetly-karta-mobil-vs-3-hasicsky.webp",
-   "stranka": "uvod",
-   "rezim": "svetly-karta",
-   "zarizeni": "mobil",
-   "bunka": "vs",
-   "pozice": "3-hasicsky"
-  },
-  {
-   "soubor": "uvod-svetly-karta-mobil-vs-5-myslivecky.webp",
-   "stranka": "uvod",
-   "rezim": "svetly-karta",
-   "zarizeni": "mobil",
-   "bunka": "vs",
-   "pozice": "5-myslivecky"
-  },
-  {
-   "soubor": "uvod-svetly-karta-mobil-ts-1-maturitni.webp",
-   "stranka": "uvod",
-   "rezim": "svetly-karta",
-   "zarizeni": "mobil",
-   "bunka": "ts",
-   "pozice": "1-maturitni"
-  },
-  {
-   "soubor": "uvod-svetly-karta-mobil-ts-3-hasicsky.webp",
-   "stranka": "uvod",
-   "rezim": "svetly-karta",
-   "zarizeni": "mobil",
-   "bunka": "ts",
-   "pozice": "3-hasicsky"
-  },
-  {
-   "soubor": "uvod-svetly-karta-mobil-ts-5-myslivecky.webp",
-   "stranka": "uvod",
-   "rezim": "svetly-karta",
-   "zarizeni": "mobil",
-   "bunka": "ts",
-   "pozice": "5-myslivecky"
-  },
-  {
-   "soubor": "uvod-svetly-karta-mobil-tp-1-maturitni.webp",
-   "stranka": "uvod",
-   "rezim": "svetly-karta",
-   "zarizeni": "mobil",
-   "bunka": "tp",
-   "pozice": "1-maturitni"
-  },
-  {
-   "soubor": "uvod-svetly-karta-mobil-tp-3-hasicsky.webp",
-   "stranka": "uvod",
-   "rezim": "svetly-karta",
-   "zarizeni": "mobil",
-   "bunka": "tp",
-   "pozice": "3-hasicsky"
-  },
-  {
-   "soubor": "uvod-svetly-karta-mobil-tp-5-myslivecky.webp",
-   "stranka": "uvod",
-   "rezim": "svetly-karta",
-   "zarizeni": "mobil",
-   "bunka": "tp",
-   "pozice": "5-myslivecky"
-  },
-  {
    "soubor": "detail-maturitni-tmavy-desktop-vp.webp",
    "stranka": "detail-maturitni",
    "rezim": "tmavy",
    "zarizeni": "desktop",
    "bunka": "vp"
-  },
-  {
-   "soubor": "detail-maturitni-tmavy-desktop-vs.webp",
-   "stranka": "detail-maturitni",
-   "rezim": "tmavy",
-   "zarizeni": "desktop",
-   "bunka": "vs"
   },
   {
    "soubor": "detail-maturitni-tmavy-desktop-ts.webp",
@@ -526,13 +238,6 @@ window.MAKETA = {
    "bunka": "vp"
   },
   {
-   "soubor": "detail-maturitni-tmavy-mobil-vs.webp",
-   "stranka": "detail-maturitni",
-   "rezim": "tmavy",
-   "zarizeni": "mobil",
-   "bunka": "vs"
-  },
-  {
    "soubor": "detail-maturitni-tmavy-mobil-ts.webp",
    "stranka": "detail-maturitni",
    "rezim": "tmavy",
@@ -547,74 +252,11 @@ window.MAKETA = {
    "bunka": "tp"
   },
   {
-   "soubor": "detail-maturitni-svetly-desktop-vp.webp",
-   "stranka": "detail-maturitni",
-   "rezim": "svetly",
-   "zarizeni": "desktop",
-   "bunka": "vp"
-  },
-  {
-   "soubor": "detail-maturitni-svetly-desktop-vs.webp",
-   "stranka": "detail-maturitni",
-   "rezim": "svetly",
-   "zarizeni": "desktop",
-   "bunka": "vs"
-  },
-  {
-   "soubor": "detail-maturitni-svetly-desktop-ts.webp",
-   "stranka": "detail-maturitni",
-   "rezim": "svetly",
-   "zarizeni": "desktop",
-   "bunka": "ts"
-  },
-  {
-   "soubor": "detail-maturitni-svetly-desktop-tp.webp",
-   "stranka": "detail-maturitni",
-   "rezim": "svetly",
-   "zarizeni": "desktop",
-   "bunka": "tp"
-  },
-  {
-   "soubor": "detail-maturitni-svetly-mobil-vp.webp",
-   "stranka": "detail-maturitni",
-   "rezim": "svetly",
-   "zarizeni": "mobil",
-   "bunka": "vp"
-  },
-  {
-   "soubor": "detail-maturitni-svetly-mobil-vs.webp",
-   "stranka": "detail-maturitni",
-   "rezim": "svetly",
-   "zarizeni": "mobil",
-   "bunka": "vs"
-  },
-  {
-   "soubor": "detail-maturitni-svetly-mobil-ts.webp",
-   "stranka": "detail-maturitni",
-   "rezim": "svetly",
-   "zarizeni": "mobil",
-   "bunka": "ts"
-  },
-  {
-   "soubor": "detail-maturitni-svetly-mobil-tp.webp",
-   "stranka": "detail-maturitni",
-   "rezim": "svetly",
-   "zarizeni": "mobil",
-   "bunka": "tp"
-  },
-  {
    "soubor": "detail-hasicsky-tmavy-desktop-vp.webp",
    "stranka": "detail-hasicsky",
    "rezim": "tmavy",
    "zarizeni": "desktop",
    "bunka": "vp"
-  },
-  {
-   "soubor": "detail-hasicsky-tmavy-desktop-vs.webp",
-   "stranka": "detail-hasicsky",
-   "rezim": "tmavy",
-   "zarizeni": "desktop",
-   "bunka": "vs"
   },
   {
    "soubor": "detail-hasicsky-tmavy-desktop-ts.webp",
@@ -638,13 +280,6 @@ window.MAKETA = {
    "bunka": "vp"
   },
   {
-   "soubor": "detail-hasicsky-tmavy-mobil-vs.webp",
-   "stranka": "detail-hasicsky",
-   "rezim": "tmavy",
-   "zarizeni": "mobil",
-   "bunka": "vs"
-  },
-  {
    "soubor": "detail-hasicsky-tmavy-mobil-ts.webp",
    "stranka": "detail-hasicsky",
    "rezim": "tmavy",
@@ -659,74 +294,11 @@ window.MAKETA = {
    "bunka": "tp"
   },
   {
-   "soubor": "detail-hasicsky-svetly-desktop-vp.webp",
-   "stranka": "detail-hasicsky",
-   "rezim": "svetly",
-   "zarizeni": "desktop",
-   "bunka": "vp"
-  },
-  {
-   "soubor": "detail-hasicsky-svetly-desktop-vs.webp",
-   "stranka": "detail-hasicsky",
-   "rezim": "svetly",
-   "zarizeni": "desktop",
-   "bunka": "vs"
-  },
-  {
-   "soubor": "detail-hasicsky-svetly-desktop-ts.webp",
-   "stranka": "detail-hasicsky",
-   "rezim": "svetly",
-   "zarizeni": "desktop",
-   "bunka": "ts"
-  },
-  {
-   "soubor": "detail-hasicsky-svetly-desktop-tp.webp",
-   "stranka": "detail-hasicsky",
-   "rezim": "svetly",
-   "zarizeni": "desktop",
-   "bunka": "tp"
-  },
-  {
-   "soubor": "detail-hasicsky-svetly-mobil-vp.webp",
-   "stranka": "detail-hasicsky",
-   "rezim": "svetly",
-   "zarizeni": "mobil",
-   "bunka": "vp"
-  },
-  {
-   "soubor": "detail-hasicsky-svetly-mobil-vs.webp",
-   "stranka": "detail-hasicsky",
-   "rezim": "svetly",
-   "zarizeni": "mobil",
-   "bunka": "vs"
-  },
-  {
-   "soubor": "detail-hasicsky-svetly-mobil-ts.webp",
-   "stranka": "detail-hasicsky",
-   "rezim": "svetly",
-   "zarizeni": "mobil",
-   "bunka": "ts"
-  },
-  {
-   "soubor": "detail-hasicsky-svetly-mobil-tp.webp",
-   "stranka": "detail-hasicsky",
-   "rezim": "svetly",
-   "zarizeni": "mobil",
-   "bunka": "tp"
-  },
-  {
    "soubor": "detail-myslivecky-tmavy-desktop-vp.webp",
    "stranka": "detail-myslivecky",
    "rezim": "tmavy",
    "zarizeni": "desktop",
    "bunka": "vp"
-  },
-  {
-   "soubor": "detail-myslivecky-tmavy-desktop-vs.webp",
-   "stranka": "detail-myslivecky",
-   "rezim": "tmavy",
-   "zarizeni": "desktop",
-   "bunka": "vs"
   },
   {
    "soubor": "detail-myslivecky-tmavy-desktop-ts.webp",
@@ -750,13 +322,6 @@ window.MAKETA = {
    "bunka": "vp"
   },
   {
-   "soubor": "detail-myslivecky-tmavy-mobil-vs.webp",
-   "stranka": "detail-myslivecky",
-   "rezim": "tmavy",
-   "zarizeni": "mobil",
-   "bunka": "vs"
-  },
-  {
    "soubor": "detail-myslivecky-tmavy-mobil-ts.webp",
    "stranka": "detail-myslivecky",
    "rezim": "tmavy",
@@ -771,11 +336,604 @@ window.MAKETA = {
    "bunka": "tp"
   },
   {
-   "soubor": "detail-myslivecky-svetly-desktop-vp.webp",
-   "stranka": "detail-myslivecky",
+   "soubor": "uvod-svetly-desktop-vs.webp",
+   "stranka": "uvod",
+   "rezim": "svetly",
+   "zarizeni": "desktop",
+   "bunka": "vs",
+   "pozice": null
+  },
+  {
+   "soubor": "uvod-svetly-desktop-vp.webp",
+   "stranka": "uvod",
+   "rezim": "svetly",
+   "zarizeni": "desktop",
+   "bunka": "vp",
+   "pozice": null
+  },
+  {
+   "soubor": "uvod-svetly-desktop-ts.webp",
+   "stranka": "uvod",
+   "rezim": "svetly",
+   "zarizeni": "desktop",
+   "bunka": "ts",
+   "pozice": null
+  },
+  {
+   "soubor": "uvod-svetly-desktop-tp.webp",
+   "stranka": "uvod",
+   "rezim": "svetly",
+   "zarizeni": "desktop",
+   "bunka": "tp",
+   "pozice": null
+  },
+  {
+   "soubor": "uvod-svetly-desktop-vsk1.webp",
+   "stranka": "uvod",
+   "rezim": "svetly",
+   "zarizeni": "desktop",
+   "bunka": "vsk1",
+   "pozice": null
+  },
+  {
+   "soubor": "uvod-svetly-desktop-vsk2.webp",
+   "stranka": "uvod",
+   "rezim": "svetly",
+   "zarizeni": "desktop",
+   "bunka": "vsk2",
+   "pozice": null
+  },
+  {
+   "soubor": "uvod-svetly-desktop-vsk3.webp",
+   "stranka": "uvod",
+   "rezim": "svetly",
+   "zarizeni": "desktop",
+   "bunka": "vsk3",
+   "pozice": null
+  },
+  {
+   "soubor": "uvod-svetly-desktop-vpk1.webp",
+   "stranka": "uvod",
+   "rezim": "svetly",
+   "zarizeni": "desktop",
+   "bunka": "vpk1",
+   "pozice": null
+  },
+  {
+   "soubor": "uvod-svetly-desktop-vpk2.webp",
+   "stranka": "uvod",
+   "rezim": "svetly",
+   "zarizeni": "desktop",
+   "bunka": "vpk2",
+   "pozice": null
+  },
+  {
+   "soubor": "uvod-svetly-desktop-vpk3.webp",
+   "stranka": "uvod",
+   "rezim": "svetly",
+   "zarizeni": "desktop",
+   "bunka": "vpk3",
+   "pozice": null
+  },
+  {
+   "soubor": "uvod-svetly-mobil-vs-1-maturitni.webp",
+   "stranka": "uvod",
+   "rezim": "svetly",
+   "zarizeni": "mobil",
+   "bunka": "vs",
+   "pozice": "1-maturitni"
+  },
+  {
+   "soubor": "uvod-svetly-mobil-vs-3-hasicsky.webp",
+   "stranka": "uvod",
+   "rezim": "svetly",
+   "zarizeni": "mobil",
+   "bunka": "vs",
+   "pozice": "3-hasicsky"
+  },
+  {
+   "soubor": "uvod-svetly-mobil-vs-5-myslivecky.webp",
+   "stranka": "uvod",
+   "rezim": "svetly",
+   "zarizeni": "mobil",
+   "bunka": "vs",
+   "pozice": "5-myslivecky"
+  },
+  {
+   "soubor": "uvod-svetly-mobil-vp-1-maturitni.webp",
+   "stranka": "uvod",
+   "rezim": "svetly",
+   "zarizeni": "mobil",
+   "bunka": "vp",
+   "pozice": "1-maturitni"
+  },
+  {
+   "soubor": "uvod-svetly-mobil-vp-3-hasicsky.webp",
+   "stranka": "uvod",
+   "rezim": "svetly",
+   "zarizeni": "mobil",
+   "bunka": "vp",
+   "pozice": "3-hasicsky"
+  },
+  {
+   "soubor": "uvod-svetly-mobil-vp-5-myslivecky.webp",
+   "stranka": "uvod",
+   "rezim": "svetly",
+   "zarizeni": "mobil",
+   "bunka": "vp",
+   "pozice": "5-myslivecky"
+  },
+  {
+   "soubor": "uvod-svetly-mobil-ts-1-maturitni.webp",
+   "stranka": "uvod",
+   "rezim": "svetly",
+   "zarizeni": "mobil",
+   "bunka": "ts",
+   "pozice": "1-maturitni"
+  },
+  {
+   "soubor": "uvod-svetly-mobil-ts-3-hasicsky.webp",
+   "stranka": "uvod",
+   "rezim": "svetly",
+   "zarizeni": "mobil",
+   "bunka": "ts",
+   "pozice": "3-hasicsky"
+  },
+  {
+   "soubor": "uvod-svetly-mobil-ts-5-myslivecky.webp",
+   "stranka": "uvod",
+   "rezim": "svetly",
+   "zarizeni": "mobil",
+   "bunka": "ts",
+   "pozice": "5-myslivecky"
+  },
+  {
+   "soubor": "uvod-svetly-mobil-tp-1-maturitni.webp",
+   "stranka": "uvod",
+   "rezim": "svetly",
+   "zarizeni": "mobil",
+   "bunka": "tp",
+   "pozice": "1-maturitni"
+  },
+  {
+   "soubor": "uvod-svetly-mobil-tp-3-hasicsky.webp",
+   "stranka": "uvod",
+   "rezim": "svetly",
+   "zarizeni": "mobil",
+   "bunka": "tp",
+   "pozice": "3-hasicsky"
+  },
+  {
+   "soubor": "uvod-svetly-mobil-tp-5-myslivecky.webp",
+   "stranka": "uvod",
+   "rezim": "svetly",
+   "zarizeni": "mobil",
+   "bunka": "tp",
+   "pozice": "5-myslivecky"
+  },
+  {
+   "soubor": "uvod-svetly-mobil-vsk1-1-maturitni.webp",
+   "stranka": "uvod",
+   "rezim": "svetly",
+   "zarizeni": "mobil",
+   "bunka": "vsk1",
+   "pozice": "1-maturitni"
+  },
+  {
+   "soubor": "uvod-svetly-mobil-vsk1-3-hasicsky.webp",
+   "stranka": "uvod",
+   "rezim": "svetly",
+   "zarizeni": "mobil",
+   "bunka": "vsk1",
+   "pozice": "3-hasicsky"
+  },
+  {
+   "soubor": "uvod-svetly-mobil-vsk1-5-myslivecky.webp",
+   "stranka": "uvod",
+   "rezim": "svetly",
+   "zarizeni": "mobil",
+   "bunka": "vsk1",
+   "pozice": "5-myslivecky"
+  },
+  {
+   "soubor": "uvod-svetly-mobil-vsk2-1-maturitni.webp",
+   "stranka": "uvod",
+   "rezim": "svetly",
+   "zarizeni": "mobil",
+   "bunka": "vsk2",
+   "pozice": "1-maturitni"
+  },
+  {
+   "soubor": "uvod-svetly-mobil-vsk2-3-hasicsky.webp",
+   "stranka": "uvod",
+   "rezim": "svetly",
+   "zarizeni": "mobil",
+   "bunka": "vsk2",
+   "pozice": "3-hasicsky"
+  },
+  {
+   "soubor": "uvod-svetly-mobil-vsk2-5-myslivecky.webp",
+   "stranka": "uvod",
+   "rezim": "svetly",
+   "zarizeni": "mobil",
+   "bunka": "vsk2",
+   "pozice": "5-myslivecky"
+  },
+  {
+   "soubor": "uvod-svetly-mobil-vsk3-1-maturitni.webp",
+   "stranka": "uvod",
+   "rezim": "svetly",
+   "zarizeni": "mobil",
+   "bunka": "vsk3",
+   "pozice": "1-maturitni"
+  },
+  {
+   "soubor": "uvod-svetly-mobil-vsk3-3-hasicsky.webp",
+   "stranka": "uvod",
+   "rezim": "svetly",
+   "zarizeni": "mobil",
+   "bunka": "vsk3",
+   "pozice": "3-hasicsky"
+  },
+  {
+   "soubor": "uvod-svetly-mobil-vsk3-5-myslivecky.webp",
+   "stranka": "uvod",
+   "rezim": "svetly",
+   "zarizeni": "mobil",
+   "bunka": "vsk3",
+   "pozice": "5-myslivecky"
+  },
+  {
+   "soubor": "uvod-svetly-mobil-vpk1-1-maturitni.webp",
+   "stranka": "uvod",
+   "rezim": "svetly",
+   "zarizeni": "mobil",
+   "bunka": "vpk1",
+   "pozice": "1-maturitni"
+  },
+  {
+   "soubor": "uvod-svetly-mobil-vpk1-3-hasicsky.webp",
+   "stranka": "uvod",
+   "rezim": "svetly",
+   "zarizeni": "mobil",
+   "bunka": "vpk1",
+   "pozice": "3-hasicsky"
+  },
+  {
+   "soubor": "uvod-svetly-mobil-vpk1-5-myslivecky.webp",
+   "stranka": "uvod",
+   "rezim": "svetly",
+   "zarizeni": "mobil",
+   "bunka": "vpk1",
+   "pozice": "5-myslivecky"
+  },
+  {
+   "soubor": "uvod-svetly-mobil-vpk2-1-maturitni.webp",
+   "stranka": "uvod",
+   "rezim": "svetly",
+   "zarizeni": "mobil",
+   "bunka": "vpk2",
+   "pozice": "1-maturitni"
+  },
+  {
+   "soubor": "uvod-svetly-mobil-vpk2-3-hasicsky.webp",
+   "stranka": "uvod",
+   "rezim": "svetly",
+   "zarizeni": "mobil",
+   "bunka": "vpk2",
+   "pozice": "3-hasicsky"
+  },
+  {
+   "soubor": "uvod-svetly-mobil-vpk2-5-myslivecky.webp",
+   "stranka": "uvod",
+   "rezim": "svetly",
+   "zarizeni": "mobil",
+   "bunka": "vpk2",
+   "pozice": "5-myslivecky"
+  },
+  {
+   "soubor": "uvod-svetly-mobil-vpk3-1-maturitni.webp",
+   "stranka": "uvod",
+   "rezim": "svetly",
+   "zarizeni": "mobil",
+   "bunka": "vpk3",
+   "pozice": "1-maturitni"
+  },
+  {
+   "soubor": "uvod-svetly-mobil-vpk3-3-hasicsky.webp",
+   "stranka": "uvod",
+   "rezim": "svetly",
+   "zarizeni": "mobil",
+   "bunka": "vpk3",
+   "pozice": "3-hasicsky"
+  },
+  {
+   "soubor": "uvod-svetly-mobil-vpk3-5-myslivecky.webp",
+   "stranka": "uvod",
+   "rezim": "svetly",
+   "zarizeni": "mobil",
+   "bunka": "vpk3",
+   "pozice": "5-myslivecky"
+  },
+  {
+   "soubor": "detail-maturitni-svetly-desktop-vs.webp",
+   "stranka": "detail-maturitni",
+   "rezim": "svetly",
+   "zarizeni": "desktop",
+   "bunka": "vs"
+  },
+  {
+   "soubor": "detail-maturitni-svetly-desktop-vp.webp",
+   "stranka": "detail-maturitni",
    "rezim": "svetly",
    "zarizeni": "desktop",
    "bunka": "vp"
+  },
+  {
+   "soubor": "detail-maturitni-svetly-desktop-ts.webp",
+   "stranka": "detail-maturitni",
+   "rezim": "svetly",
+   "zarizeni": "desktop",
+   "bunka": "ts"
+  },
+  {
+   "soubor": "detail-maturitni-svetly-desktop-tp.webp",
+   "stranka": "detail-maturitni",
+   "rezim": "svetly",
+   "zarizeni": "desktop",
+   "bunka": "tp"
+  },
+  {
+   "soubor": "detail-maturitni-svetly-desktop-vsk1.webp",
+   "stranka": "detail-maturitni",
+   "rezim": "svetly",
+   "zarizeni": "desktop",
+   "bunka": "vsk1"
+  },
+  {
+   "soubor": "detail-maturitni-svetly-desktop-vsk2.webp",
+   "stranka": "detail-maturitni",
+   "rezim": "svetly",
+   "zarizeni": "desktop",
+   "bunka": "vsk2"
+  },
+  {
+   "soubor": "detail-maturitni-svetly-desktop-vsk3.webp",
+   "stranka": "detail-maturitni",
+   "rezim": "svetly",
+   "zarizeni": "desktop",
+   "bunka": "vsk3"
+  },
+  {
+   "soubor": "detail-maturitni-svetly-desktop-vpk1.webp",
+   "stranka": "detail-maturitni",
+   "rezim": "svetly",
+   "zarizeni": "desktop",
+   "bunka": "vpk1"
+  },
+  {
+   "soubor": "detail-maturitni-svetly-desktop-vpk2.webp",
+   "stranka": "detail-maturitni",
+   "rezim": "svetly",
+   "zarizeni": "desktop",
+   "bunka": "vpk2"
+  },
+  {
+   "soubor": "detail-maturitni-svetly-desktop-vpk3.webp",
+   "stranka": "detail-maturitni",
+   "rezim": "svetly",
+   "zarizeni": "desktop",
+   "bunka": "vpk3"
+  },
+  {
+   "soubor": "detail-maturitni-svetly-mobil-vs.webp",
+   "stranka": "detail-maturitni",
+   "rezim": "svetly",
+   "zarizeni": "mobil",
+   "bunka": "vs"
+  },
+  {
+   "soubor": "detail-maturitni-svetly-mobil-vp.webp",
+   "stranka": "detail-maturitni",
+   "rezim": "svetly",
+   "zarizeni": "mobil",
+   "bunka": "vp"
+  },
+  {
+   "soubor": "detail-maturitni-svetly-mobil-ts.webp",
+   "stranka": "detail-maturitni",
+   "rezim": "svetly",
+   "zarizeni": "mobil",
+   "bunka": "ts"
+  },
+  {
+   "soubor": "detail-maturitni-svetly-mobil-tp.webp",
+   "stranka": "detail-maturitni",
+   "rezim": "svetly",
+   "zarizeni": "mobil",
+   "bunka": "tp"
+  },
+  {
+   "soubor": "detail-maturitni-svetly-mobil-vsk1.webp",
+   "stranka": "detail-maturitni",
+   "rezim": "svetly",
+   "zarizeni": "mobil",
+   "bunka": "vsk1"
+  },
+  {
+   "soubor": "detail-maturitni-svetly-mobil-vsk2.webp",
+   "stranka": "detail-maturitni",
+   "rezim": "svetly",
+   "zarizeni": "mobil",
+   "bunka": "vsk2"
+  },
+  {
+   "soubor": "detail-maturitni-svetly-mobil-vsk3.webp",
+   "stranka": "detail-maturitni",
+   "rezim": "svetly",
+   "zarizeni": "mobil",
+   "bunka": "vsk3"
+  },
+  {
+   "soubor": "detail-maturitni-svetly-mobil-vpk1.webp",
+   "stranka": "detail-maturitni",
+   "rezim": "svetly",
+   "zarizeni": "mobil",
+   "bunka": "vpk1"
+  },
+  {
+   "soubor": "detail-maturitni-svetly-mobil-vpk2.webp",
+   "stranka": "detail-maturitni",
+   "rezim": "svetly",
+   "zarizeni": "mobil",
+   "bunka": "vpk2"
+  },
+  {
+   "soubor": "detail-maturitni-svetly-mobil-vpk3.webp",
+   "stranka": "detail-maturitni",
+   "rezim": "svetly",
+   "zarizeni": "mobil",
+   "bunka": "vpk3"
+  },
+  {
+   "soubor": "detail-hasicsky-svetly-desktop-vs.webp",
+   "stranka": "detail-hasicsky",
+   "rezim": "svetly",
+   "zarizeni": "desktop",
+   "bunka": "vs"
+  },
+  {
+   "soubor": "detail-hasicsky-svetly-desktop-vp.webp",
+   "stranka": "detail-hasicsky",
+   "rezim": "svetly",
+   "zarizeni": "desktop",
+   "bunka": "vp"
+  },
+  {
+   "soubor": "detail-hasicsky-svetly-desktop-ts.webp",
+   "stranka": "detail-hasicsky",
+   "rezim": "svetly",
+   "zarizeni": "desktop",
+   "bunka": "ts"
+  },
+  {
+   "soubor": "detail-hasicsky-svetly-desktop-tp.webp",
+   "stranka": "detail-hasicsky",
+   "rezim": "svetly",
+   "zarizeni": "desktop",
+   "bunka": "tp"
+  },
+  {
+   "soubor": "detail-hasicsky-svetly-desktop-vsk1.webp",
+   "stranka": "detail-hasicsky",
+   "rezim": "svetly",
+   "zarizeni": "desktop",
+   "bunka": "vsk1"
+  },
+  {
+   "soubor": "detail-hasicsky-svetly-desktop-vsk2.webp",
+   "stranka": "detail-hasicsky",
+   "rezim": "svetly",
+   "zarizeni": "desktop",
+   "bunka": "vsk2"
+  },
+  {
+   "soubor": "detail-hasicsky-svetly-desktop-vsk3.webp",
+   "stranka": "detail-hasicsky",
+   "rezim": "svetly",
+   "zarizeni": "desktop",
+   "bunka": "vsk3"
+  },
+  {
+   "soubor": "detail-hasicsky-svetly-desktop-vpk1.webp",
+   "stranka": "detail-hasicsky",
+   "rezim": "svetly",
+   "zarizeni": "desktop",
+   "bunka": "vpk1"
+  },
+  {
+   "soubor": "detail-hasicsky-svetly-desktop-vpk2.webp",
+   "stranka": "detail-hasicsky",
+   "rezim": "svetly",
+   "zarizeni": "desktop",
+   "bunka": "vpk2"
+  },
+  {
+   "soubor": "detail-hasicsky-svetly-desktop-vpk3.webp",
+   "stranka": "detail-hasicsky",
+   "rezim": "svetly",
+   "zarizeni": "desktop",
+   "bunka": "vpk3"
+  },
+  {
+   "soubor": "detail-hasicsky-svetly-mobil-vs.webp",
+   "stranka": "detail-hasicsky",
+   "rezim": "svetly",
+   "zarizeni": "mobil",
+   "bunka": "vs"
+  },
+  {
+   "soubor": "detail-hasicsky-svetly-mobil-vp.webp",
+   "stranka": "detail-hasicsky",
+   "rezim": "svetly",
+   "zarizeni": "mobil",
+   "bunka": "vp"
+  },
+  {
+   "soubor": "detail-hasicsky-svetly-mobil-ts.webp",
+   "stranka": "detail-hasicsky",
+   "rezim": "svetly",
+   "zarizeni": "mobil",
+   "bunka": "ts"
+  },
+  {
+   "soubor": "detail-hasicsky-svetly-mobil-tp.webp",
+   "stranka": "detail-hasicsky",
+   "rezim": "svetly",
+   "zarizeni": "mobil",
+   "bunka": "tp"
+  },
+  {
+   "soubor": "detail-hasicsky-svetly-mobil-vsk1.webp",
+   "stranka": "detail-hasicsky",
+   "rezim": "svetly",
+   "zarizeni": "mobil",
+   "bunka": "vsk1"
+  },
+  {
+   "soubor": "detail-hasicsky-svetly-mobil-vsk2.webp",
+   "stranka": "detail-hasicsky",
+   "rezim": "svetly",
+   "zarizeni": "mobil",
+   "bunka": "vsk2"
+  },
+  {
+   "soubor": "detail-hasicsky-svetly-mobil-vsk3.webp",
+   "stranka": "detail-hasicsky",
+   "rezim": "svetly",
+   "zarizeni": "mobil",
+   "bunka": "vsk3"
+  },
+  {
+   "soubor": "detail-hasicsky-svetly-mobil-vpk1.webp",
+   "stranka": "detail-hasicsky",
+   "rezim": "svetly",
+   "zarizeni": "mobil",
+   "bunka": "vpk1"
+  },
+  {
+   "soubor": "detail-hasicsky-svetly-mobil-vpk2.webp",
+   "stranka": "detail-hasicsky",
+   "rezim": "svetly",
+   "zarizeni": "mobil",
+   "bunka": "vpk2"
+  },
+  {
+   "soubor": "detail-hasicsky-svetly-mobil-vpk3.webp",
+   "stranka": "detail-hasicsky",
+   "rezim": "svetly",
+   "zarizeni": "mobil",
+   "bunka": "vpk3"
   },
   {
    "soubor": "detail-myslivecky-svetly-desktop-vs.webp",
@@ -783,6 +941,13 @@ window.MAKETA = {
    "rezim": "svetly",
    "zarizeni": "desktop",
    "bunka": "vs"
+  },
+  {
+   "soubor": "detail-myslivecky-svetly-desktop-vp.webp",
+   "stranka": "detail-myslivecky",
+   "rezim": "svetly",
+   "zarizeni": "desktop",
+   "bunka": "vp"
   },
   {
    "soubor": "detail-myslivecky-svetly-desktop-ts.webp",
@@ -799,11 +964,46 @@ window.MAKETA = {
    "bunka": "tp"
   },
   {
-   "soubor": "detail-myslivecky-svetly-mobil-vp.webp",
+   "soubor": "detail-myslivecky-svetly-desktop-vsk1.webp",
    "stranka": "detail-myslivecky",
    "rezim": "svetly",
-   "zarizeni": "mobil",
-   "bunka": "vp"
+   "zarizeni": "desktop",
+   "bunka": "vsk1"
+  },
+  {
+   "soubor": "detail-myslivecky-svetly-desktop-vsk2.webp",
+   "stranka": "detail-myslivecky",
+   "rezim": "svetly",
+   "zarizeni": "desktop",
+   "bunka": "vsk2"
+  },
+  {
+   "soubor": "detail-myslivecky-svetly-desktop-vsk3.webp",
+   "stranka": "detail-myslivecky",
+   "rezim": "svetly",
+   "zarizeni": "desktop",
+   "bunka": "vsk3"
+  },
+  {
+   "soubor": "detail-myslivecky-svetly-desktop-vpk1.webp",
+   "stranka": "detail-myslivecky",
+   "rezim": "svetly",
+   "zarizeni": "desktop",
+   "bunka": "vpk1"
+  },
+  {
+   "soubor": "detail-myslivecky-svetly-desktop-vpk2.webp",
+   "stranka": "detail-myslivecky",
+   "rezim": "svetly",
+   "zarizeni": "desktop",
+   "bunka": "vpk2"
+  },
+  {
+   "soubor": "detail-myslivecky-svetly-desktop-vpk3.webp",
+   "stranka": "detail-myslivecky",
+   "rezim": "svetly",
+   "zarizeni": "desktop",
+   "bunka": "vpk3"
   },
   {
    "soubor": "detail-myslivecky-svetly-mobil-vs.webp",
@@ -811,6 +1011,13 @@ window.MAKETA = {
    "rezim": "svetly",
    "zarizeni": "mobil",
    "bunka": "vs"
+  },
+  {
+   "soubor": "detail-myslivecky-svetly-mobil-vp.webp",
+   "stranka": "detail-myslivecky",
+   "rezim": "svetly",
+   "zarizeni": "mobil",
+   "bunka": "vp"
   },
   {
    "soubor": "detail-myslivecky-svetly-mobil-ts.webp",
@@ -825,6 +1032,154 @@ window.MAKETA = {
    "rezim": "svetly",
    "zarizeni": "mobil",
    "bunka": "tp"
+  },
+  {
+   "soubor": "detail-myslivecky-svetly-mobil-vsk1.webp",
+   "stranka": "detail-myslivecky",
+   "rezim": "svetly",
+   "zarizeni": "mobil",
+   "bunka": "vsk1"
+  },
+  {
+   "soubor": "detail-myslivecky-svetly-mobil-vsk2.webp",
+   "stranka": "detail-myslivecky",
+   "rezim": "svetly",
+   "zarizeni": "mobil",
+   "bunka": "vsk2"
+  },
+  {
+   "soubor": "detail-myslivecky-svetly-mobil-vsk3.webp",
+   "stranka": "detail-myslivecky",
+   "rezim": "svetly",
+   "zarizeni": "mobil",
+   "bunka": "vsk3"
+  },
+  {
+   "soubor": "detail-myslivecky-svetly-mobil-vpk1.webp",
+   "stranka": "detail-myslivecky",
+   "rezim": "svetly",
+   "zarizeni": "mobil",
+   "bunka": "vpk1"
+  },
+  {
+   "soubor": "detail-myslivecky-svetly-mobil-vpk2.webp",
+   "stranka": "detail-myslivecky",
+   "rezim": "svetly",
+   "zarizeni": "mobil",
+   "bunka": "vpk2"
+  },
+  {
+   "soubor": "detail-myslivecky-svetly-mobil-vpk3.webp",
+   "stranka": "detail-myslivecky",
+   "rezim": "svetly",
+   "zarizeni": "mobil",
+   "bunka": "vpk3"
+  },
+  {
+   "soubor": "uvod-tmavy-desktop-vs.webp",
+   "stranka": "uvod",
+   "rezim": "tmavy",
+   "zarizeni": "desktop",
+   "bunka": "vs",
+   "pozice": null
+  },
+  {
+   "soubor": "uvod-tmavy-mobil-vs-1-maturitni.webp",
+   "stranka": "uvod",
+   "rezim": "tmavy",
+   "zarizeni": "mobil",
+   "bunka": "vs",
+   "pozice": "1-maturitni"
+  },
+  {
+   "soubor": "uvod-tmavy-mobil-vs-3-hasicsky.webp",
+   "stranka": "uvod",
+   "rezim": "tmavy",
+   "zarizeni": "mobil",
+   "bunka": "vs",
+   "pozice": "3-hasicsky"
+  },
+  {
+   "soubor": "uvod-tmavy-mobil-vs-5-myslivecky.webp",
+   "stranka": "uvod",
+   "rezim": "tmavy",
+   "zarizeni": "mobil",
+   "bunka": "vs",
+   "pozice": "5-myslivecky"
+  },
+  {
+   "soubor": "detail-maturitni-tmavy-desktop-vs.webp",
+   "stranka": "detail-maturitni",
+   "rezim": "tmavy",
+   "zarizeni": "desktop",
+   "bunka": "vs"
+  },
+  {
+   "soubor": "detail-maturitni-tmavy-mobil-vs.webp",
+   "stranka": "detail-maturitni",
+   "rezim": "tmavy",
+   "zarizeni": "mobil",
+   "bunka": "vs"
+  },
+  {
+   "soubor": "detail-hasicsky-tmavy-desktop-vs.webp",
+   "stranka": "detail-hasicsky",
+   "rezim": "tmavy",
+   "zarizeni": "desktop",
+   "bunka": "vs"
+  },
+  {
+   "soubor": "detail-hasicsky-tmavy-mobil-vs.webp",
+   "stranka": "detail-hasicsky",
+   "rezim": "tmavy",
+   "zarizeni": "mobil",
+   "bunka": "vs"
+  },
+  {
+   "soubor": "detail-myslivecky-tmavy-desktop-vs.webp",
+   "stranka": "detail-myslivecky",
+   "rezim": "tmavy",
+   "zarizeni": "desktop",
+   "bunka": "vs"
+  },
+  {
+   "soubor": "detail-myslivecky-tmavy-mobil-vs.webp",
+   "stranka": "detail-myslivecky",
+   "rezim": "tmavy",
+   "zarizeni": "mobil",
+   "bunka": "vs"
+  },
+  {
+   "soubor": "uvod-svetly-web-desktop-vs.webp",
+   "stranka": "uvod",
+   "rezim": "svetly-web",
+   "zarizeni": "desktop",
+   "bunka": "vs",
+   "pozice": null
+  },
+  {
+   "soubor": "uvod-svetly-web-mobil-vs-1-maturitni.webp",
+   "stranka": "uvod",
+   "rezim": "svetly-web",
+   "zarizeni": "mobil",
+   "bunka": "vs",
+   "pozice": "1-maturitni"
+  },
+  {
+   "soubor": "uvod-svetly-web-mobil-vs-3-hasicsky.webp",
+   "stranka": "uvod",
+   "rezim": "svetly-web",
+   "zarizeni": "mobil",
+   "bunka": "vs",
+   "pozice": "3-hasicsky"
+  },
+  {
+   "soubor": "uvod-svetly-web-mobil-vs-5-myslivecky.webp",
+   "stranka": "uvod",
+   "rezim": "svetly-web",
+   "zarizeni": "mobil",
+   "bunka": "vs",
+   "pozice": "5-myslivecky"
   }
  ]
 };
